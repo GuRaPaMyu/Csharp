@@ -1,0 +1,6 @@
+D:\hashimoto\Project\Cs\Hello\Hello\bin\Debug\Hello.exe.config
+D:\hashimoto\Project\Cs\Hello\Hello\bin\Debug\Hello.exe
+D:\hashimoto\Project\Cs\Hello\Hello\bin\Debug\Hello.pdb
+D:\hashimoto\Project\Cs\Hello\Hello\obj\Debug\Hello.csprojResolveAssemblyReference.cache
+D:\hashimoto\Project\Cs\Hello\Hello\obj\Debug\Hello.exe
+D:\hashimoto\Project\Cs\Hello\Hello\obj\Debug\Hello.pdb
