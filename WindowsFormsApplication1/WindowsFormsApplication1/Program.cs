@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TestForm1;
 
 namespace Hello
 {
@@ -11,8 +12,7 @@ namespace Hello
     {
         static void Main(string[] args)
         {
-            Form1.
-
+            InitiarizeComponent();
 
         }
     }
