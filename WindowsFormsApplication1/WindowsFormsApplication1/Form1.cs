@@ -16,15 +16,10 @@ namespace TestForm1
         {
             InitializeComponent();
         }
-
-        private void Form1_Load(object sender, EventArgs e)
+    
+        public void Form1_Load()
         {
-            ProgressBar();
-        }
 
-        private void ProgressBar()
-        {
-            throw new NotImplementedException();
         }
     }
 }

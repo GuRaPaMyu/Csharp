@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TestForm1;
 
-namespace Hello
+namespace TestForm1
 {
     partial class Form1
     {
         static void Main(string[] args)
         {
-            InitiarizeComponent();
-
+            Form1 f = new Form1();
+            Application.Run(f);
         }
     }
 }
