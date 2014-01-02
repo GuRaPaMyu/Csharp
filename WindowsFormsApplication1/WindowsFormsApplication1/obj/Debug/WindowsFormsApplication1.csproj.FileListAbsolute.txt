@@ -1,9 +1,0 @@
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csprojResolveAssemblyReference.cache
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\WindowsFormsApplication1.csproj.GenerateResource.Cache
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\TestForm1.exe.config
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\TestForm1.Form1.resources
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\TestForm1.Properties.Resources.resources
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\TestForm1.exe
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\bin\Debug\TestForm1.pdb
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\TestForm1.exe
-D:\hashimoto\Project\Cs\WindowsFormsApplication1\WindowsFormsApplication1\obj\Debug\TestForm1.pdb
