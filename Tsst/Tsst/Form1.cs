@@ -19,10 +19,7 @@ namespace Tsst
 
         private void Mouse_Clicked(object sender, MouseEventArgs e)
         {
-          Botton btn;
-          btn = e.Button;
-
-          btn.Name = "ahoho";
+          MessageBox.Show("botton was clicked!", "ahoho", MessageBoxButtons.OK, MessageBoxIcon.Information);
           
         }
 
