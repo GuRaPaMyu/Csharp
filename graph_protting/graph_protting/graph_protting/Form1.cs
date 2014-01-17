@@ -30,7 +30,6 @@ namespace graph_protting
           point_picbox.Y = 12;
 
           pictureBox1.Location = point_picbox;
-
         }
 
         private void form_sizechng(object sender, EventArgs e)
