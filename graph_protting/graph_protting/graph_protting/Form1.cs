@@ -30,11 +30,116 @@ namespace graph_protting
           point_picbox.Y = 12;
 
           pictureBox1.Location = point_picbox;
+
         }
 
         private void form_sizechng(object sender, EventArgs e)
         {
           pictureBox1.Size = new Size(this.Size.Width - 40,  this.Size.Height - 62);
+          pictureBox1.Invalidate();
+        }
+
+        private void picturebox1_paint(object sender, PaintEventArgs e)
+        {
+          DrawSolidXAxis(e.Graphics);
+          DrawDotXAxis(e.Graphics);
+          DrawSolidYAxis(e.Graphics);
+          DrawDotYAxis(e.Graphics);
+          //DrawWave(e.Graphics);
+        }
+
+        private void DrawSolidXAxis(Graphics graphics)
+        {
+          int x1, y1, x2, y2;
+          x1 = 0;
+          x2 = pictureBox1.Width;
+          y1 = y2 = pictureBox1.Height / 2;
+          var pen = new Pen(Color.Wheat);
+          graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
+
+          const int numSmallDiv = 50;
+          const int lengthSmallDiv = 4;
+          const int lengthSmallDivL = 8;
+          for (int j = 0; j < 3; ++j)
+          {
+            for (int i = 0; i < numSmallDiv + 1; ++i)
+            {
+              if (i % 5 == 0)
+              {
+                y1 = -lengthSmallDivL / 2 + j * pictureBox1.Height / 2;
+                y2 = +lengthSmallDivL / 2 + j * pictureBox1.Height / 2;
+              }
+              else
+              {
+                y1 = -lengthSmallDiv / 2 + j * pictureBox1.Height / 2;
+                y2 = +lengthSmallDiv / 2 + j * pictureBox1.Height / 2;
+              }
+              x1 = x2 = i * pictureBox1.Width / numSmallDiv;
+              graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
+            }
+          }
+        }
+
+        private void DrawDotXAxis(Graphics graphics)
+        {
+          int x1, y1, x2, y2;
+          x1 = 0;
+          x2 = pictureBox1.Width;
+          var pen = new Pen(Color.Wheat);
+          pen.DashPattern = new float[] { 1.0f, 7.0f };
+          const int numLargeDiv = 8;
+          for (int i = 1; i < numLargeDiv; ++i)
+          {
+            y1 = y2 = i * pictureBox1.Height / numLargeDiv;
+            graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
+          }
+        }
+
+        private void DrawSolidYAxis(Graphics graphics)
+        {
+          int x1, y1, x2, y2;
+          y1 = 0;
+          y2 = pictureBox1.Height;
+          x1 = x2 = pictureBox1.Width / 2;
+          var pen = new Pen(Color.Wheat);
+          graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
+
+          const int numSmallDiv = 40;
+          const int lengthSmallDiv = 4;
+          const int lengthSmallDivL = 8;
+          for (int j = 0; j < 3; ++j)
+          {
+            for (int i = 0; i < numSmallDiv + 1; ++i)
+            {
+              if (i % 5 == 0)
+              {
+                x1 = -lengthSmallDivL / 2 + j * pictureBox1.Width / 2;
+                x2 = +lengthSmallDivL / 2 + j * pictureBox1.Width / 2;
+              }
+              else
+              {
+                x1 = -lengthSmallDiv / 2 + j * pictureBox1.Width / 2;
+                x2 = +lengthSmallDiv / 2 + j * pictureBox1.Width / 2;
+              }
+              y1 = y2 = i * pictureBox1.Height / numSmallDiv;
+              graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
+            }
+          }
+        }
+
+        private void DrawDotYAxis(Graphics graphics)
+        {
+          int x1, y1, x2, y2;
+          y1 = 0;
+          y2 = pictureBox1.Height;
+          var pen = new Pen(Color.Wheat);
+          pen.DashPattern = new float[] { 1.0f, 7.0f };
+          const int numLargeDiv = 10;
+          for (int i = 1; i < numLargeDiv; ++i)
+          {
+            x1 = x2 = i * pictureBox1.Width / numLargeDiv;
+            graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
+          }
         }
     }
 }

@@ -16,8 +16,6 @@ namespace graph_protting
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
-
             Application.Run(new OSC());
         }
     }
