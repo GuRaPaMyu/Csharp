@@ -37,7 +37,7 @@
       this.pictureBox1.BackColor = System.Drawing.SystemColors.HotTrack;
       this.pictureBox1.Location = new System.Drawing.Point(12, 12);
       this.pictureBox1.Name = "pictureBox1";
-      this.pictureBox1.Size = new System.Drawing.Size(560, 238);
+      this.pictureBox1.Size = new System.Drawing.Size(860, 438);
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
       this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.picturebox1_paint);
@@ -46,7 +46,7 @@
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(584, 262);
+      this.ClientSize = new System.Drawing.Size(884, 462);
       this.Controls.Add(this.pictureBox1);
       this.Name = "OSC";
       this.Text = "Hashimoto_OSC";

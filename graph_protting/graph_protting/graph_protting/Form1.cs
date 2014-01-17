@@ -35,7 +35,7 @@ namespace graph_protting
 
         private void form_sizechng(object sender, EventArgs e)
         {
-          pictureBox1.Size = new Size(this.Size.Width - 40,  this.Size.Height - 62);
+          pictureBox1.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 24);
           pictureBox1.Invalidate();
         }
 
@@ -140,6 +140,11 @@ namespace graph_protting
             x1 = x2 = i * pictureBox1.Width / numLargeDiv;
             graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
           }
+        }
+
+        private void DrawReceivedData(Graphics graphics)
+        {
+
         }
     }
 }
