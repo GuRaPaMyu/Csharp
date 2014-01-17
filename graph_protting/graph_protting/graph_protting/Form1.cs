@@ -7,11 +7,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace graph_protting
 {
     public partial class OSC : Form
     {
+      const int numSample = 1000;
+      private int[] sampledData = new int[numSample];
+
+
         public OSC()
         {
             InitializeComponent();
@@ -44,7 +49,8 @@ namespace graph_protting
           DrawDotXAxis(e.Graphics);
           DrawSolidYAxis(e.Graphics);
           DrawDotYAxis(e.Graphics);
-          //DrawWave(e.Graphics);
+          DataInput();
+          DrawReceivedData(e.Graphics);
         }
 
         private void DrawSolidXAxis(Graphics graphics)
@@ -143,7 +149,27 @@ namespace graph_protting
 
         private void DrawReceivedData(Graphics graphics)
         {
+          var pen = new Pen(Color.YellowGreen);
+          var points = new Point[numSample];
+          for (int i = 0; i < numSample; ++i)
+          {
+            points[i].X = i;
+            points[i].Y = (int)((((double)sampledData[i] - 512.0) * 1.0 / 1024.0 + 0.5) * pictureBox1.Height);
+          }
+          graphics.DrawLines(pen, points);
+        }
 
+        private void DataInput()
+        {
+          using (StreamReader r = new StreamReader(@"D:\hashimoto\Project\Cs\graph_protting\data_making\test.txt"))
+          {
+            string line;
+            for (int i = 0; i < 1000; i++)
+            {
+              line = r.ReadLine();
+              sampledData[i] = int.Parse(line);
+            }
+          }
         }
     }
 }

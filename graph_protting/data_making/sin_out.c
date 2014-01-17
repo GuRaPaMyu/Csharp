@@ -16,7 +16,7 @@ int main (int argv, char *argc[])
 
   for(i=0;i<PARTS;i++)
     {
-      fprintf(fp, "%.5f, %.5f\n", inc_rate * i, sin(inc_rate * i));
+      fprintf(fp, "%.5f\n", sin(inc_rate * i));
     }
   fclose(fp);
   return 0;
