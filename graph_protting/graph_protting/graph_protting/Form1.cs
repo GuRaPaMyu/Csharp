@@ -13,7 +13,7 @@ namespace graph_protting
 {
     public partial class OSC : Form
     {
-      const int numSample = 1000;
+      const int numSample = 860;
       private int[] sampledData = new int[numSample];
 
 
@@ -154,7 +154,9 @@ namespace graph_protting
           for (int i = 0; i < numSample; i++)
           {
             points[i].X = i;
-            points[i].Y = (int)((((double)sampledData[i] - 512.0) * 1.0 / 1024.0 + 0.5) * pictureBox1.Height);
+            //points[i].Y = (int)((((double)sampledData[i] - 512.0) * 1.0 / 1024.0 + 0.5) * pictureBox1.Height);
+            //points[i].X = pictureBox1.Width / numSample * i;
+            points[i].Y = (int)(- sampledData[i] + pictureBox1.Height / 2);
           }
           graphics.DrawLines(pen, points);
         }
@@ -162,10 +164,9 @@ namespace graph_protting
         private void DataInput()
         {
             double inc_rate;
-            const int parts = 1000;
-            inc_rate = Math.PI * 2 / parts;
+            inc_rate = Math.PI * 2 / numSample;
 
-            for (int i = 0; i < parts; i++)
+            for (int i = 0; i < numSample; i++)
             {
               sampledData[i] = (int)(100 * Math.Sin(inc_rate * i));
             }
