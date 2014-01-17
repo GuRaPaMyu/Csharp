@@ -151,7 +151,7 @@ namespace graph_protting
         {
           var pen = new Pen(Color.YellowGreen);
           var points = new Point[numSample];
-          for (int i = 0; i < numSample; ++i)
+          for (int i = 0; i < numSample; i++)
           {
             points[i].X = i;
             points[i].Y = (int)((((double)sampledData[i] - 512.0) * 1.0 / 1024.0 + 0.5) * pictureBox1.Height);
@@ -161,15 +161,14 @@ namespace graph_protting
 
         private void DataInput()
         {
-          using (StreamReader r = new StreamReader(@"D:\hashimoto\Project\Cs\graph_protting\data_making\test.txt"))
-          {
-            string line;
-            for (int i = 0; i < 1000; i++)
+            double inc_rate;
+            const int parts = 1000;
+            inc_rate = Math.PI * 2 / parts;
+
+            for (int i = 0; i < parts; i++)
             {
-              line = r.ReadLine();
-              sampledData[i] = int.Parse(line);
+              sampledData[i] = (int)(100 * Math.Sin(inc_rate * i));
             }
-          }
         }
     }
 }
