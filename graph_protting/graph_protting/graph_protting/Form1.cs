@@ -161,6 +161,7 @@ namespace graph_protting
           graphics.DrawLines(pen, points);
         }
 
+      //データ送受信とかして描画できるようになったらDataInputは消す．あくまでテスト描画用
         private void DataInput()
         {
             double inc_rate;
@@ -168,8 +169,13 @@ namespace graph_protting
 
             for (int i = 0; i < numSample; i++)
             {
-              sampledData[i] = (int)(100 * Math.Sin(inc_rate * i));
+              sampledData[i] = (int)(200 * Math.Sin(inc_rate * i));
             }
         }
+    }
+
+    public class DataReceiving
+    {
+
     }
 }
