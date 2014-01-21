@@ -119,10 +119,10 @@
       this.numericUpDown2.Size = new System.Drawing.Size(79, 19);
       this.numericUpDown2.TabIndex = 4;
       this.numericUpDown2.Value = new decimal(new int[] {
-            100,
+            10,
             0,
             0,
-            0});
+            131072});
       this.numericUpDown2.ValueChanged += new System.EventHandler(this.TimeValueChanged);
       // 
       // OSC
@@ -137,6 +137,7 @@
       this.Controls.Add(this.pictureBox1);
       this.Name = "OSC";
       this.Text = "Hashimoto_OSC";
+      this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1Closed);
       this.Load += new System.EventHandler(this.Form1Load);
       this.SizeChanged += new System.EventHandler(this.form_sizechng);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

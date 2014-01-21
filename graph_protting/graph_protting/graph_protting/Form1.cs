@@ -26,6 +26,7 @@ namespace graph_protting
     double timeDiv_ms;
     double realTimeInterval_ms;
 
+    SerialInit serialForm = new SerialInit();
 
     public OSC()
     {
@@ -35,6 +36,13 @@ namespace graph_protting
     private void Form1Load(object sender, EventArgs e)
     {
       picturebox1_init();
+      serialForm.Show();
+      serialForm.SerialSet("COM", 9800);
+    }
+
+    private void Form1Closed(object sender, FormClosedEventArgs e)
+    {
+      serialForm.SerialClose();
     }
 
     private void picturebox1_init()
@@ -46,6 +54,7 @@ namespace graph_protting
 
       voltageDiv = (double)numericUpDown1.Value;
       timeDiv_ms = (double)numericUpDown2.Value;
+
       realTimeInterval_ms = 0.001; //マイコンに依存．引数にしてもいいかも
 
       Point point_picbox = new Point();
@@ -186,7 +195,7 @@ namespace graph_protting
     private void DataInput()
     {
       double inc_rate;
-      inc_rate = Math.PI * 2 / (numSample - 1);
+      inc_rate = Math.PI * 2 / numSample;
 
       for (int i = 0; i < numSample; i++)
       {
@@ -216,5 +225,10 @@ namespace graph_protting
       pictureBox1.Invalidate();
     }
 
+    private void DataReceiving()
+    {
+
+    }
+    
   }
 }

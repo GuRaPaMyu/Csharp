@@ -52,6 +52,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SerialInit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SerialInit.Designer.cs">
+      <DependentUpon>SerialInit.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -64,6 +70,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SerialInit.resx">
+      <DependentUpon>SerialInit.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\DataSources\graph_protting.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\graph_protting.Properties.Settings.datasource" />
     <None Include="Properties\DataSources\OSC.datasource" />
