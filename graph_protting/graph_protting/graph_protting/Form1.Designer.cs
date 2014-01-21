@@ -31,9 +31,11 @@
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
-      this.comboBox1 = new System.Windows.Forms.ComboBox();
-      this.comboBox2 = new System.Windows.Forms.ComboBox();
+      this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+      this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
       this.SuspendLayout();
       // 
       // pictureBox1
@@ -70,42 +72,44 @@
       this.label2.TabIndex = 2;
       this.label2.Text = "1 ms/Div";
       // 
-      // comboBox1
+      // numericUpDown1
       // 
-      this.comboBox1.FormattingEnabled = true;
-      this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Alpha;
-      this.comboBox1.Items.AddRange(new object[] {
-            "0.5",
-            "1",
-            "2",
-            "3",
-            "4",
-            "5",
-            "10",
-            "20"});
-      this.comboBox1.Location = new System.Drawing.Point(3, 57);
-      this.comboBox1.Name = "comboBox1";
-      this.comboBox1.Size = new System.Drawing.Size(121, 20);
-      this.comboBox1.TabIndex = 3;
-      this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.VoltageDivChanged);
-      this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.VoltageDivChanged);
-      this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VoltageDivKeyPress);
+      this.numericUpDown1.DecimalPlaces = 2;
+      this.numericUpDown1.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            65536});
+      this.numericUpDown1.Location = new System.Drawing.Point(12, 57);
+      this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+      this.numericUpDown1.Name = "numericUpDown1";
+      this.numericUpDown1.Size = new System.Drawing.Size(79, 19);
+      this.numericUpDown1.TabIndex = 3;
+      this.numericUpDown1.Value = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+      this.numericUpDown1.ValueChanged += new System.EventHandler(this.VoltageVallueChanged);
       // 
-      // comboBox2
+      // numericUpDown2
       // 
-      this.comboBox2.FormattingEnabled = true;
-      this.comboBox2.Location = new System.Drawing.Point(3, 83);
-      this.comboBox2.Name = "comboBox2";
-      this.comboBox2.Size = new System.Drawing.Size(121, 20);
-      this.comboBox2.TabIndex = 4;
+      this.numericUpDown2.Location = new System.Drawing.Point(12, 82);
+      this.numericUpDown2.Name = "numericUpDown2";
+      this.numericUpDown2.Size = new System.Drawing.Size(79, 19);
+      this.numericUpDown2.TabIndex = 4;
       // 
       // OSC
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(884, 462);
-      this.Controls.Add(this.comboBox2);
-      this.Controls.Add(this.comboBox1);
+      this.Controls.Add(this.numericUpDown2);
+      this.Controls.Add(this.numericUpDown1);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.pictureBox1);
@@ -114,6 +118,8 @@
       this.Load += new System.EventHandler(this.Form1_Load);
       this.SizeChanged += new System.EventHandler(this.form_sizechng);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -124,8 +130,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
     }
 }
 
