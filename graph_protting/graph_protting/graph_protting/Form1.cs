@@ -22,7 +22,7 @@ namespace graph_protting
     int longdashinterval_X = 5;
     int longdashinterval_Y = 5;
 
-    int voltageDiv = 2;
+    double voltageDiv = 0.5;
 
     public OSC()
     {
@@ -188,5 +188,18 @@ namespace graph_protting
         drawData[i] = (int)(sampledData[i] * Center.Y / axisinterval_Y / voltageDiv);
       }
     }
+
+    private void VoltageDivChanged(object sender, EventArgs e)
+    {
+      voltageDiv = 6;
+      Invalidate();
+    }
+
+    private void VoltageDivKeyPress(object sender, KeyPressEventArgs e)
+    {
+      voltageDiv = 6;
+      Invalidate();
+    }
+
   }
 }
