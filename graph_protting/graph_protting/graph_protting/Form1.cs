@@ -185,7 +185,7 @@ namespace graph_protting
     {
       for(int i = 0; i < numSample; i++)
       {
-        drawData[i] = (int)(sampledData[i] * voltageDiv / axisinterval_Y);
+        drawData[i] = (int)(sampledData[i] * Center.Y / axisinterval_Y / voltageDiv);
       }
     }
   }
