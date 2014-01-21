@@ -98,12 +98,28 @@
       // 
       // numericUpDown2
       // 
+      this.numericUpDown2.DecimalPlaces = 2;
+      this.numericUpDown2.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
       this.numericUpDown2.Location = new System.Drawing.Point(12, 82);
+      this.numericUpDown2.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+      this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
       this.numericUpDown2.Name = "numericUpDown2";
       this.numericUpDown2.Size = new System.Drawing.Size(79, 19);
       this.numericUpDown2.TabIndex = 4;
       this.numericUpDown2.Value = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
             0});
