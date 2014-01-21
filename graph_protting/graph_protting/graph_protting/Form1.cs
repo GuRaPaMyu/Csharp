@@ -13,16 +13,17 @@ namespace graph_protting
 {
   public partial class OSC : Form
   {
-    const int numSample = 860;
+    const int numSample = 1000;
     private double[] sampledData = new double[numSample];
     private int[] drawData = new int[numSample];
     Point Center = new Point();
-    int axisinterval_X;
-    int axisinterval_Y;
-    int longdashinterval_X;
-    int longdashinterval_Y;
+    int axisInterval_X;
+    int axisUnterval_Y;
+    int longdashInterval_X;
+    int longdashInterval_Y;
 
     double voltageDiv;
+    double timeInterval;
 
 
     public OSC()
@@ -37,12 +38,13 @@ namespace graph_protting
 
     private void picturebox1_init()
     {
-      axisinterval_X = 5;
-      axisinterval_Y = 4;
-      longdashinterval_X = 5;
-      longdashinterval_Y = 5;
+      axisInterval_X = 5;
+      axisUnterval_Y = 4;
+      longdashInterval_X = 5;
+      longdashInterval_Y = 5;
 
       voltageDiv = (double)numericUpDown1.Value;
+      timeInterval = (double)numericUpDown2.Value;
 
       Point point_picbox = new Point();
       point_picbox.X = 12;
@@ -87,9 +89,9 @@ namespace graph_protting
       const int lengthSmallDivL = 8;
       for (int j = 0; j < 3; ++j)
       {
-        for (int i = 0; i < 2* longdashinterval_X * axisinterval_X + 1; ++i)
+        for (int i = 0; i < 2* longdashInterval_X * axisInterval_X + 1; ++i)
         {
-          if (i % longdashinterval_X == 0)
+          if (i % longdashInterval_X == 0)
           {
             y1 = -lengthSmallDivL / 2 + j * pictureBox1.Height / 2;
             y2 = +lengthSmallDivL / 2 + j * pictureBox1.Height / 2;
@@ -99,7 +101,7 @@ namespace graph_protting
             y1 = -lengthSmallDiv / 2 + j * pictureBox1.Height / 2;
             y2 = +lengthSmallDiv / 2 + j * pictureBox1.Height / 2;
           }
-          x1 = x2 = i * pictureBox1.Width / (2 * longdashinterval_X * axisinterval_X);
+          x1 = x2 = i * pictureBox1.Width / (2 * longdashInterval_X * axisInterval_X);
           graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
         }
       }
@@ -112,9 +114,9 @@ namespace graph_protting
       x2 = pictureBox1.Width;
       var pen = new Pen(Color.Wheat);
       pen.DashPattern = new float[] { 1.0f, 7.0f };
-      for (int i = 1; i < 2 * axisinterval_Y; ++i)
+      for (int i = 1; i < 2 * axisUnterval_Y; ++i)
       {
-        y1 = y2 = i * pictureBox1.Height / (2 * axisinterval_Y);
+        y1 = y2 = i * pictureBox1.Height / (2 * axisUnterval_Y);
         graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
       }
     }
@@ -132,7 +134,7 @@ namespace graph_protting
       const int lengthSmallDivL = 8;
       for (int j = 0; j < 3; ++j)
       {
-        for (int i = 0; i < 2 * longdashinterval_Y * axisinterval_Y + 1; ++i)
+        for (int i = 0; i < 2 * longdashInterval_Y * axisUnterval_Y + 1; ++i)
         {
           if (i % 5 == 0)
           {
@@ -144,7 +146,7 @@ namespace graph_protting
             x1 = -lengthSmallDiv / 2 + j * pictureBox1.Width / 2;
             x2 = +lengthSmallDiv / 2 + j * pictureBox1.Width / 2;
           }
-          y1 = y2 = i * pictureBox1.Height / (2 * longdashinterval_Y * axisinterval_Y);
+          y1 = y2 = i * pictureBox1.Height / (2 * longdashInterval_Y * axisUnterval_Y);
           graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
         }
       }
@@ -157,9 +159,9 @@ namespace graph_protting
       y2 = pictureBox1.Height;
       var pen = new Pen(Color.Wheat);
       pen.DashPattern = new float[] { 1.0f, 7.0f };
-      for (int i = 1; i < 2 * axisinterval_X; ++i)
+      for (int i = 1; i < 2 * axisInterval_X; ++i)
       {
-        x1 = x2 = i * pictureBox1.Width / (2 * axisinterval_X);
+        x1 = x2 = i * pictureBox1.Width / (2 * axisInterval_X);
         graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
       }
     }
@@ -170,9 +172,7 @@ namespace graph_protting
       var points = new Point[numSample];
       for (int i = 0; i < numSample; i++)
       {
-        points[i].X = i;
-        //points[i].Y = (int)((((double)sampledData[i] - 512.0) * 1.0 / 1024.0 + 0.5) * pictureBox1.Height);
-        //points[i].X = pictureBox1.Width / numSample * i;
+        points[i].X = (int)(pictureBox1.Size.Width * i / (numSample - 1));
         points[i].Y = (int)(Center.Y - drawData[i]);
       }
       graphics.DrawLines(pen, points);
@@ -182,7 +182,7 @@ namespace graph_protting
     private void DataInput()
     {
       double inc_rate;
-      inc_rate = Math.PI * 2 / numSample;
+      inc_rate = Math.PI * 2 / (numSample - 1);
 
       for (int i = 0; i < numSample; i++)
       {
@@ -194,7 +194,7 @@ namespace graph_protting
     {
       for(int i = 0; i < numSample; i++)
       {
-        drawData[i] = (int)(sampledData[i] * Center.Y / axisinterval_Y / voltageDiv);
+        drawData[i] = (int)(sampledData[i] * Center.Y / axisUnterval_Y / voltageDiv);
       }
     }
 
@@ -202,6 +202,13 @@ namespace graph_protting
     {
       voltageDiv = (double)numericUpDown1.Value;
       label1.Text = numericUpDown1.Value.ToString() + " V/Div";
+      pictureBox1.Invalidate();
+    }
+
+    private void TimeValueChanged(object sender, EventArgs e)
+    {
+      timeInterval = (double)numericUpDown2.Value;
+      label2.Text = numericUpDown2.Value.ToString() + " ms/Div";
       pictureBox1.Invalidate();
     }
 

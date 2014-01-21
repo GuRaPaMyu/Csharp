@@ -56,9 +56,9 @@
       this.label1.ForeColor = System.Drawing.Color.Lime;
       this.label1.Location = new System.Drawing.Point(12, 12);
       this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(79, 21);
+      this.label1.Size = new System.Drawing.Size(105, 21);
       this.label1.TabIndex = 1;
-      this.label1.Text = "1 V/Div";
+      this.label1.Text = "1.00 V/Div";
       // 
       // label2
       // 
@@ -90,10 +90,10 @@
       this.numericUpDown1.Size = new System.Drawing.Size(79, 19);
       this.numericUpDown1.TabIndex = 3;
       this.numericUpDown1.Value = new decimal(new int[] {
-            1,
+            100,
             0,
             0,
-            0});
+            131072});
       this.numericUpDown1.ValueChanged += new System.EventHandler(this.VoltageValueChanged);
       // 
       // numericUpDown2
@@ -102,6 +102,12 @@
       this.numericUpDown2.Name = "numericUpDown2";
       this.numericUpDown2.Size = new System.Drawing.Size(79, 19);
       this.numericUpDown2.TabIndex = 4;
+      this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+      this.numericUpDown2.ValueChanged += new System.EventHandler(this.TimeValueChanged);
       // 
       // OSC
       // 
