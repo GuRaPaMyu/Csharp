@@ -58,7 +58,7 @@
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(79, 21);
       this.label1.TabIndex = 1;
-      this.label1.Text = "2 V/Div";
+      this.label1.Text = "1 V/Div";
       // 
       // label2
       // 
@@ -76,10 +76,10 @@
       // 
       this.numericUpDown1.DecimalPlaces = 2;
       this.numericUpDown1.Increment = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
-            65536});
+            131072});
       this.numericUpDown1.Location = new System.Drawing.Point(12, 57);
       this.numericUpDown1.Minimum = new decimal(new int[] {
             1,
@@ -90,11 +90,11 @@
       this.numericUpDown1.Size = new System.Drawing.Size(79, 19);
       this.numericUpDown1.TabIndex = 3;
       this.numericUpDown1.Value = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             0});
-      this.numericUpDown1.ValueChanged += new System.EventHandler(this.VoltageVallueChanged);
+      this.numericUpDown1.ValueChanged += new System.EventHandler(this.VoltageValueChanged);
       // 
       // numericUpDown2
       // 
@@ -115,7 +115,7 @@
       this.Controls.Add(this.pictureBox1);
       this.Name = "OSC";
       this.Text = "Hashimoto_OSC";
-      this.Load += new System.EventHandler(this.Form1_Load);
+      this.Load += new System.EventHandler(this.Form1Load);
       this.SizeChanged += new System.EventHandler(this.form_sizechng);
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();

@@ -17,33 +17,42 @@ namespace graph_protting
     private double[] sampledData = new double[numSample];
     private int[] drawData = new int[numSample];
     Point Center = new Point();
-    int axisinterval_X = 5;
-    int axisinterval_Y = 4;
-    int longdashinterval_X = 5;
-    int longdashinterval_Y = 5;
+    int axisinterval_X;
+    int axisinterval_Y;
+    int longdashinterval_X;
+    int longdashinterval_Y;
 
-    double voltageDiv = 0.5;
+    double voltageDiv;
+
 
     public OSC()
     {
       InitializeComponent();
     }
 
-    private void Form1_Load(object sender, EventArgs e)
+    private void Form1Load(object sender, EventArgs e)
     {
       picturebox1_init();
     }
 
     private void picturebox1_init()
     {
+      axisinterval_X = 5;
+      axisinterval_Y = 4;
+      longdashinterval_X = 5;
+      longdashinterval_Y = 5;
+
+      voltageDiv = (double)numericUpDown1.Value;
+
       Point point_picbox = new Point();
       point_picbox.X = 12;
       point_picbox.Y = 12;
+      pictureBox1.Location = point_picbox;
 
       Center.X = pictureBox1.Size.Width / 2;
       Center.Y = pictureBox1.Size.Height / 2;
 
-      pictureBox1.Location = point_picbox;
+      label1.Text = numericUpDown1.Value.ToString() + " V/Div";
     }
 
     private void form_sizechng(object sender, EventArgs e)
@@ -189,14 +198,12 @@ namespace graph_protting
       }
     }
 
-    private void VoltageVallueChanged(object sender, EventArgs e)
+    private void VoltageValueChanged(object sender, EventArgs e)
     {
       voltageDiv = (double)numericUpDown1.Value;
       label1.Text = numericUpDown1.Value.ToString() + " V/Div";
       pictureBox1.Invalidate();
     }
-
-
 
   }
 }
