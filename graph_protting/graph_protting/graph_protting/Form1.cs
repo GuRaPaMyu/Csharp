@@ -191,14 +191,17 @@ namespace graph_protting
 
     private void VoltageDivChanged(object sender, EventArgs e)
     {
-      voltageDiv = 6;
-      Invalidate();
+      int index = comboBox1.SelectedIndex;
+      voltageDiv = double.Parse(comboBox1.Items[index].ToString());
+      label1.Text = comboBox1.Items[index].ToString() + " V/Div";
+      pictureBox1.Invalidate();
     }
 
     private void VoltageDivKeyPress(object sender, KeyPressEventArgs e)
     {
-      voltageDiv = 6;
-      Invalidate();
+      int index = comboBox1.SelectedIndex;
+      voltageDiv = double.Parse(comboBox1.SelectedItem.ToString());
+      pictureBox1.Invalidate();
     }
 
   }

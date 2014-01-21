@@ -32,6 +32,7 @@
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.comboBox1 = new System.Windows.Forms.ComboBox();
+      this.comboBox2 = new System.Windows.Forms.ComboBox();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
       this.SuspendLayout();
       // 
@@ -74,6 +75,7 @@
       this.comboBox1.FormattingEnabled = true;
       this.comboBox1.ImeMode = System.Windows.Forms.ImeMode.Alpha;
       this.comboBox1.Items.AddRange(new object[] {
+            "0.5",
             "1",
             "2",
             "3",
@@ -89,11 +91,20 @@
       this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.VoltageDivChanged);
       this.comboBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.VoltageDivKeyPress);
       // 
+      // comboBox2
+      // 
+      this.comboBox2.FormattingEnabled = true;
+      this.comboBox2.Location = new System.Drawing.Point(3, 83);
+      this.comboBox2.Name = "comboBox2";
+      this.comboBox2.Size = new System.Drawing.Size(121, 20);
+      this.comboBox2.TabIndex = 4;
+      // 
       // OSC
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(884, 462);
+      this.Controls.Add(this.comboBox2);
       this.Controls.Add(this.comboBox1);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
@@ -114,6 +125,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
     }
 }
 
