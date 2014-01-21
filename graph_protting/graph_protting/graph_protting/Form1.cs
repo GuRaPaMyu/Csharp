@@ -15,13 +15,14 @@ namespace graph_protting
   {
     const int numSample = 860;
     private double[] sampledData = new double[numSample];
+    private int[] drawData = new int[numSample];
     Point Center = new Point();
     int axisinterval_X = 5;
     int axisinterval_Y = 4;
     int longdashinterval_X = 5;
     int longdashinterval_Y = 5;
 
-
+    int voltageDiv = 2;
 
     public OSC()
     {
@@ -60,6 +61,7 @@ namespace graph_protting
       DrawSolidYAxis(e.Graphics);
       DrawDotYAxis(e.Graphics);
       DataInput();
+      DataConvert();
       DrawReceivedData(e.Graphics);
     }
 
@@ -162,7 +164,7 @@ namespace graph_protting
         points[i].X = i;
         //points[i].Y = (int)((((double)sampledData[i] - 512.0) * 1.0 / 1024.0 + 0.5) * pictureBox1.Height);
         //points[i].X = pictureBox1.Width / numSample * i;
-        points[i].Y = (int)(-sampledData[i] + pictureBox1.Height / 2);
+        points[i].Y = (int)(Center.Y - drawData[i]);
       }
       graphics.DrawLines(pen, points);
     }
@@ -175,13 +177,16 @@ namespace graph_protting
 
       for (int i = 0; i < numSample; i++)
       {
-        sampledData[i] = 200 * Math.Sin(inc_rate * i);
+        sampledData[i] = Math.Sin(inc_rate * i);
       }
     }
-  }
 
-  public class DataReceiving
-  {
-
+    private void DataConvert()
+    {
+      for(int i = 0; i < numSample; i++)
+      {
+        drawData[i] = (int)(sampledData[i] * voltageDiv / axisinterval_Y);
+      }
+    }
   }
 }
