@@ -43,6 +43,7 @@
       this.button1.TabIndex = 0;
       this.button1.Text = "OpenPort";
       this.button1.UseVisualStyleBackColor = true;
+      this.button1.Click += new System.EventHandler(this.ClickOpenPort);
       // 
       // comboBox1
       // 

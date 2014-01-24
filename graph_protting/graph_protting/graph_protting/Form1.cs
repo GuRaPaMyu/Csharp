@@ -37,7 +37,8 @@ namespace graph_protting
     {
       picturebox1_init();
       serialForm.Show();
-      serialForm.SerialSet("COM", 9800);
+      serialForm.Activate();
+      this.AddOwnedForm(serialForm);
     }
 
     private void Form1Closed(object sender, FormClosedEventArgs e)
@@ -83,7 +84,7 @@ namespace graph_protting
       DrawDotXAxis(e.Graphics);
       DrawSolidYAxis(e.Graphics);
       DrawDotYAxis(e.Graphics);
-      DataInput();
+      DataInput(); //ここでやるのはよくないな．
       DataConvert();
       DrawReceivedData(e.Graphics);
     }
@@ -229,6 +230,5 @@ namespace graph_protting
     {
 
     }
-    
   }
 }

@@ -20,20 +20,24 @@ namespace graph_protting
       InitializeComponent();
     }
 
-    public void SerialSet(string port, int baudrate)
-    {
-      serial.PortName = port;
-      serial.BaudRate = baudrate;
-    }
-
-    public void SerialOpen()
-    {
-      serial.Open();
-    }
-
     public void SerialClose()
     {
       serial.Close();
+    }
+
+    private void ClickOpenPort(object sender, EventArgs e)
+    {
+
+      try
+      {
+        serial.Open();
+        Close();
+      }
+      catch
+      {
+        serial.Close();
+        MessageBox.Show("シリアルポートをOpenできませんでした．", "Cannot Open SerialPort", MessageBoxButtons.OK, MessageBoxIcon.Error);        
+      }
     }
   }
 }
