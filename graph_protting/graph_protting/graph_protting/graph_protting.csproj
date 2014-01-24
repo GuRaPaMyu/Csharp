@@ -52,11 +52,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SerialInit.cs">
+    <Compile Include="SerialCommunicator.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SerialInit.Designer.cs">
-      <DependentUpon>SerialInit.cs</DependentUpon>
+    <Compile Include="SerialCommunicator.Designer.cs">
+      <DependentUpon>SerialCommunicator.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -70,8 +70,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="SerialInit.resx">
-      <DependentUpon>SerialInit.cs</DependentUpon>
+    <EmbeddedResource Include="SerialCommunicator.resx">
+      <DependentUpon>SerialCommunicator.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\DataSources\graph_protting.Properties.Resources.datasource" />
     <None Include="Properties\DataSources\graph_protting.Properties.Settings.datasource" />

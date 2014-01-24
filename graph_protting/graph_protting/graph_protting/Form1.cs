@@ -26,7 +26,7 @@ namespace graph_protting
     double timeDiv_ms;
     double realTimeInterval_ms;
 
-    SerialInit serialForm = new SerialInit();
+    SerialCommunicator serialForm = new SerialCommunicator();
 
     public OSC()
     {
