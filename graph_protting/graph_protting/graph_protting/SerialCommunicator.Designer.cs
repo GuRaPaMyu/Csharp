@@ -37,7 +37,7 @@
       // 
       // button1
       // 
-      this.button1.Location = new System.Drawing.Point(99, 208);
+      this.button1.Location = new System.Drawing.Point(99, 150);
       this.button1.Name = "button1";
       this.button1.Size = new System.Drawing.Size(75, 23);
       this.button1.TabIndex = 0;
@@ -48,7 +48,13 @@
       // comboBox1
       // 
       this.comboBox1.FormattingEnabled = true;
-      this.comboBox1.Location = new System.Drawing.Point(84, 53);
+      this.comboBox1.Items.AddRange(new object[] {
+            "COM1",
+            "COM2",
+            "COM3",
+            "COM4",
+            "COM5"});
+      this.comboBox1.Location = new System.Drawing.Point(99, 51);
       this.comboBox1.Name = "comboBox1";
       this.comboBox1.Size = new System.Drawing.Size(121, 20);
       this.comboBox1.TabIndex = 1;
@@ -56,7 +62,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(42, 56);
+      this.label1.Location = new System.Drawing.Point(57, 54);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(36, 12);
       this.label1.TabIndex = 2;
@@ -65,7 +71,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(21, 106);
+      this.label2.Location = new System.Drawing.Point(36, 96);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(57, 12);
       this.label2.TabIndex = 3;
@@ -74,22 +80,25 @@
       // comboBox2
       // 
       this.comboBox2.FormattingEnabled = true;
-      this.comboBox2.Location = new System.Drawing.Point(84, 103);
+      this.comboBox2.Items.AddRange(new object[] {
+            "4900",
+            "9800"});
+      this.comboBox2.Location = new System.Drawing.Point(99, 93);
       this.comboBox2.Name = "comboBox2";
       this.comboBox2.Size = new System.Drawing.Size(121, 20);
       this.comboBox2.TabIndex = 4;
       // 
-      // SerialInit
+      // SerialCommunicator
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(284, 262);
+      this.ClientSize = new System.Drawing.Size(284, 212);
       this.Controls.Add(this.comboBox2);
       this.Controls.Add(this.label2);
       this.Controls.Add(this.label1);
       this.Controls.Add(this.comboBox1);
       this.Controls.Add(this.button1);
-      this.Name = "SerialInit";
+      this.Name = "SerialCommunicator";
       this.Text = "SerialInit";
       this.ResumeLayout(false);
       this.PerformLayout();

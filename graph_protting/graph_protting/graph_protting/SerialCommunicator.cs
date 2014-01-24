@@ -27,17 +27,18 @@ namespace graph_protting
 
     private void ClickOpenPort(object sender, EventArgs e)
     {
-
       try
       {
+        serial.PortName = comboBox1.SelectedText;
+        serial.BaudRate = int.Parse(comboBox2.SelectedText);
         serial.Open();
-        Close();
       }
       catch
       {
         serial.Close();
-        MessageBox.Show("シリアルポートをOpenできませんでした．", "Cannot Open SerialPort", MessageBoxButtons.OK, MessageBoxIcon.Error);        
+        MessageBox.Show("シリアルポートをOpenできませんでした．", "Cannot Open SerialPort", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
+      this.Close();
     }
   }
 }
