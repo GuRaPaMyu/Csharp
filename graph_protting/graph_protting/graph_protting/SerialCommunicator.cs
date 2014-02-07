@@ -40,5 +40,14 @@ namespace graph_protting
       }
       this.Close();
     }
+
+    private void GetSerialData(double[] data, int getnum)
+    {
+      for (int i=0;i<getnum;i++)
+      {
+        data[i] = double.Parse(serial.ReadLine());
+      }
+    }
+
   }
 }
