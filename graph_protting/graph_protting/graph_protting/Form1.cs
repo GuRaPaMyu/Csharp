@@ -226,6 +226,14 @@ namespace graph_protting
       pictureBox1.Invalidate();
     }
 
+    private void TimeRegulator()
+    {
+      //マイコンのサンプリングして送るやつの周期にあわせて何らかの数値きめる（1秒間にサンプリングする回数など
+      //その数値と時間軸の値からDrawするデータを作成して時間軸との同期をとる
+      //本当にこれでいいのか…（無駄が多くて非効率的
+      //この辺りは複数チャンネル対応できるようにクラス化したほうがいいかも
+    }
+
     private void DataReceiving()
     {
 
