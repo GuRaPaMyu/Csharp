@@ -192,6 +192,7 @@ namespace graph_protting
       graphics.DrawLines(pen, points);
     }
 
+
     //データ送受信とかして描画できるようになったらDataInputは消す．あくまでテスト描画用
     private void DataInput()
     {

@@ -29,34 +29,23 @@ namespace graph_protting
     {
       try
       {
-        serial.PortName = comboBox1.SelectedText;
-        serial.BaudRate = int.Parse(comboBox2.SelectedText);
+        serial.PortName = (string)comboBox1.SelectedItem;
+        serial.BaudRate = int.Parse((string)comboBox2.SelectedItem);
         serial.Open();
       }
       catch
       {
-        serial.Close();
-        MessageBox.Show("シリアルポートをOpenできませんでした．", "Cannot Open SerialPort", MessageBoxButtons.OK, MessageBoxIcon.Error);
+          serial.Close();
+          MessageBox.Show("シリアルポートをOpenできませんでした．", "Cannot Open SerialPort", MessageBoxButtons.OK, MessageBoxIcon.Error);
       }
       this.Close();
     }
 
-    private void GetSerialData(double[] data, int getnum)
-    {
-      for (int i=0;i<getnum;i++)
-      {
-        data[i] = double.Parse(serial.ReadLine());
-      }
-    }
-
-    private static void DataReceivedHandler(
-                        object sender,
-                        SerialDataReceivedEventArgs e)
+    private static void DataReceivedHandler(object sender, SerialDataReceivedEventArgs e)
     {
       SerialPort sp = (SerialPort)sender;
       string indata = sp.ReadExisting();
-      Console.WriteLine("Data Received:");
-      Console.Write(indata);
+      
     }
 
   }
