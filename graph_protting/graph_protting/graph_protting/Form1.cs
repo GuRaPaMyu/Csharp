@@ -240,4 +240,13 @@ namespace graph_protting
 
     }
   }
+
+
+  public class OSCChannel
+  {
+    double VoltProp;
+    private double[] DrawData = new double[1000];
+
+
+  }
 }
