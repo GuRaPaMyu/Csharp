@@ -94,7 +94,6 @@
             0,
             0,
             131072});
-      this.numericUpDown1.ValueChanged += new System.EventHandler(this.VoltageValueChanged);
       // 
       // numericUpDown2
       // 
@@ -123,7 +122,6 @@
             0,
             0,
             131072});
-      this.numericUpDown2.ValueChanged += new System.EventHandler(this.TimeValueChanged);
       // 
       // OSC
       // 

@@ -13,20 +13,17 @@ namespace graph_protting
 {
   public partial class OSC : Form
   {
-    const int numSample = 1000;
-    private double[] sampledData = new double[numSample];
-    private int[] drawData = new int[numSample];
+    int numSample = 1000;
     Point Center = new Point();
     int axisInterval_X;
     int axisInterval_Y;
     int longdashInterval_X;
     int longdashInterval_Y;
 
-    double voltageDiv;
-    double timeDiv_ms;
     double realTimeInterval_ms;
 
     SerialCommunicator serialForm = new SerialCommunicator();
+    OscChannel Channel1 = new OscChannel();
 
     public OSC()
     {
@@ -36,8 +33,8 @@ namespace graph_protting
     private void Form1Load(object sender, EventArgs e)
     {
       picturebox1_init();
-      serialForm.Show();
-      serialForm.Activate();
+      //serialForm.Show();
+      //serialForm.Activate();
       this.AddOwnedForm(serialForm);
     }
 
@@ -53,10 +50,10 @@ namespace graph_protting
       longdashInterval_X = 5;
       longdashInterval_Y = 5;
 
-      voltageDiv = (double)numericUpDown1.Value;
-      timeDiv_ms = (double)numericUpDown2.Value;
-
       realTimeInterval_ms = 0.001; //マイコンに依存．引数にしてもいいかも
+
+      Channel1.voltageDiv = (double)numericUpDown1.Value;
+      Channel1.timeDiv_ms = (double)numericUpDown2.Value;
 
       Point point_picbox = new Point();
       point_picbox.X = 12;
@@ -84,7 +81,6 @@ namespace graph_protting
       DrawDotXAxis(e.Graphics);
       DrawSolidYAxis(e.Graphics);
       DrawDotYAxis(e.Graphics);
-      DataInput(); //ここでやるのはよくないな．
       DataConvert();
       DrawReceivedData(e.Graphics);
     }
@@ -186,67 +182,17 @@ namespace graph_protting
       for (int i = 0; i < numSample; i++)
       {
         points[i].X = (int)((pictureBox1.Size.Width * realTimeInterval_ms * i)
-          / (2 * axisInterval_X * timeDiv_ms));
-        points[i].Y = (int)(Center.Y - drawData[i]);
+          / (2 * axisInterval_X * Channel1.timeDiv_ms));
+        //points[i].Y = (int)(Center.Y - Channel1.DrawData[i]);
       }
       graphics.DrawLines(pen, points);
     }
-
-
-    //データ送受信とかして描画できるようになったらDataInputは消す．あくまでテスト描画用
-    private void DataInput()
-    {
-      double inc_rate;
-      inc_rate = Math.PI * 2 / numSample;
-
-      for (int i = 0; i < numSample; i++)
-      {
-        sampledData[i] = Math.Sin(inc_rate * i);
-      }
-    }
-
     private void DataConvert()
     {
-      for(int i = 0; i < numSample; i++)
+      for (int i = 0; i < numSample; i++)
       {
-        drawData[i] = (int)(sampledData[i] * Center.Y / axisInterval_Y / voltageDiv);
+       // DrawData[i] = (int)(SignalData[i] * Center.Y / axisInterval_Y / voltageDiv);
       }
     }
-
-    private void VoltageValueChanged(object sender, EventArgs e)
-    {
-      voltageDiv = (double)numericUpDown1.Value;
-      label1.Text = numericUpDown1.Value.ToString() + " V/Div";
-      pictureBox1.Invalidate();
-    }
-
-    private void TimeValueChanged(object sender, EventArgs e)
-    {
-      timeDiv_ms = (double)numericUpDown2.Value;
-      label2.Text = numericUpDown2.Value.ToString() + " ms/Div";
-      pictureBox1.Invalidate();
-    }
-
-    private void TimeRegulator()
-    {
-      //マイコンのサンプリングして送るやつの周期にあわせて何らかの数値きめる（1秒間にサンプリングする回数など
-      //その数値と時間軸の値からDrawするデータを作成して時間軸との同期をとる
-      //本当にこれでいいのか…（無駄が多くて非効率的
-      //この辺りは複数チャンネル対応できるようにクラス化したほうがいいかも
-    }
-
-    private void DataReceiving()
-    {
-
-    }
-  }
-
-
-  public class OSCChannel
-  {
-    double VoltProp;
-    private double[] DrawData = new double[1000];
-
-
   }
 }
