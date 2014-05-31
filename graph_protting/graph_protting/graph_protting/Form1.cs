@@ -33,8 +33,8 @@ namespace graph_protting
     private void Form1Load(object sender, EventArgs e)
     {
       picturebox1_init();
-      //serialForm.Show();
-      //serialForm.Activate();
+      serialForm.Show();
+      serialForm.Activate();
       this.AddOwnedForm(serialForm);
     }
 
