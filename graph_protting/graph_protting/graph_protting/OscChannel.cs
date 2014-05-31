@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace graph_protting
 {
-  class OscChannel
+  public class OscChannel : OSC
   {
     private int numSample;
     private double[] DrawData = new double[1000];
@@ -18,6 +18,8 @@ namespace graph_protting
 
     public OscChannel()
     {
+        this.voltageDiv = (double)numericUpDown1.Value;
+        this.timeDiv_ms = (double)numericUpDown2.Value;
     }
 
 

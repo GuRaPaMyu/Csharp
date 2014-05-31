@@ -52,9 +52,6 @@ namespace graph_protting
 
       realTimeInterval_ms = 0.001; //マイコンに依存．引数にしてもいいかも
 
-      Channel1.voltageDiv = (double)numericUpDown1.Value;
-      Channel1.timeDiv_ms = (double)numericUpDown2.Value;
-
       Point point_picbox = new Point();
       point_picbox.X = 12;
       point_picbox.Y = 12;
