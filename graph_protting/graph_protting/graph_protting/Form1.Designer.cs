@@ -46,7 +46,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(860, 438);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.picturebox1_paint);
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.Picturebox1Paint);
             // 
             // label1
             // 
@@ -134,10 +134,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Name = "OSC";
-            this.Text = "Hashimoto_OSC";
+            this.Text = "Oscilloscope-Cs";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1Closed);
             this.Load += new System.EventHandler(this.Form1Load);
-            this.SizeChanged += new System.EventHandler(this.form_sizechng);
+            this.SizeChanged += new System.EventHandler(this.Form1SizeChanged);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
