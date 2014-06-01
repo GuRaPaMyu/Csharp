@@ -22,7 +22,7 @@ namespace graph_protting
           InitializeComponent();
         }
   
-        private void Form1Load(object sender, EventArgs e)
+        private void form1Load(object sender, EventArgs e)
         {
             Picturebox1Init();
             //serialForm.Show();
@@ -30,7 +30,7 @@ namespace graph_protting
             this.AddOwnedForm(serialForm);
         }
 
-        private void Form1Closed(object sender, FormClosedEventArgs e)
+        private void form1Closed(object sender, FormClosedEventArgs e)
         {
             serialForm.SerialClose();
         }
@@ -49,7 +49,7 @@ namespace graph_protting
             label2.Text = numericUpDown2.Value.ToString() + " ms/Div";
         }
 
-        private void Form1SizeChanged(object sender, EventArgs e)
+        private void form1SizeChanged(object sender, EventArgs e)
         {
             pictureBox1.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 24);
             Monitor1.Width = pictureBox1.Width;
@@ -57,12 +57,13 @@ namespace graph_protting
             pictureBox1.Invalidate();
         }
 
-        private void Picturebox1Paint(object sender, PaintEventArgs e)
+        private void picturebox1Paint(object sender, PaintEventArgs e)
         {
             Monitor1.DrawAxis(e.Graphics);
             Channel1.DataInput();
             Channel1.DataConvert();
             Channel1.DrawReceivedData(e.Graphics);
         }
+
     }
 }
