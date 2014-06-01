@@ -14,8 +14,8 @@ namespace graph_protting
     public partial class OSC : Form
     {
         SerialCommunicator serialForm = new SerialCommunicator();
-        Channel Channel1 = new Channel();
-        Monitor Monitor1 = new Monitor();
+        Channel channel1 = new Channel();
+        Monitor monitor1 = new Monitor();
     
         public OSC()
         {
@@ -24,7 +24,7 @@ namespace graph_protting
   
         private void form1Load(object sender, EventArgs e)
         {
-            Picturebox1Init();
+            picturebox1Init();
             //serialForm.Show();
             //serialForm.Activate();  
             this.AddOwnedForm(serialForm);
@@ -35,15 +35,15 @@ namespace graph_protting
             serialForm.SerialClose();
         }
         
-        private void Picturebox1Init()
+        private void picturebox1Init()
         {
             Point originPicturebox1 = new Point();
             originPicturebox1.X = 12;
             originPicturebox1.Y = 12;
             pictureBox1.Location = originPicturebox1;
 
-            Monitor1.Width = pictureBox1.Width;
-            Monitor1.Height = pictureBox1.Height;
+            monitor1.Width = pictureBox1.Width;
+            monitor1.Height = pictureBox1.Height;
 
             label1.Text = numericUpDown1.Value.ToString() + " V/Div";
             label2.Text = numericUpDown2.Value.ToString() + " ms/Div";
@@ -52,17 +52,17 @@ namespace graph_protting
         private void form1SizeChanged(object sender, EventArgs e)
         {
             pictureBox1.Size = new Size(ClientSize.Width - 24, ClientSize.Height - 24);
-            Monitor1.Width = pictureBox1.Width;
-            Monitor1.Height = pictureBox1.Height;
+            monitor1.Width = pictureBox1.Width;
+            monitor1.Height = pictureBox1.Height;
             pictureBox1.Invalidate();
         }
 
         private void picturebox1Paint(object sender, PaintEventArgs e)
         {
-            Monitor1.DrawAxis(e.Graphics);
-            Channel1.DataInput();
-            Channel1.DataConvert();
-            Channel1.DrawReceivedData(e.Graphics);
+            monitor1.DrawAxis(e.Graphics);
+            channel1.DataInput();
+            channel1.DataConvert();
+            channel1.DrawReceivedData(e.Graphics);
         }
 
     }
