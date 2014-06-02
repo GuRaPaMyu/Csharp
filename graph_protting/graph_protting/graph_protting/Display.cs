@@ -178,7 +178,7 @@ namespace graph_protting
 
     private void DisplaySizeChanged(object sender, EventArgs e)
     {
-      pictureBox1.Size = Size;
+      pictureBox1.Size = this.Size;
       pictureBox1.Invalidate();
     }
   }

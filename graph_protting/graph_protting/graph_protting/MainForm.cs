@@ -14,7 +14,6 @@ namespace graph_protting
   public partial class OSC : Form
   {
     SerialCommunicator serialForm = new SerialCommunicator();
-    //Display display1 = new Display();
 
     public OSC()
     {
