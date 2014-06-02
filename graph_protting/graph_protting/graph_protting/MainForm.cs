@@ -14,9 +14,8 @@ namespace graph_protting
     public partial class OSC : Form
     {
         SerialCommunicator serialForm = new SerialCommunicator();
-        Channel channel1 = new Channel();
         Monitor monitor1 = new Monitor();
-    
+
         public OSC()
         {
           InitializeComponent();
@@ -27,7 +26,7 @@ namespace graph_protting
             picturebox1Init();
             //serialForm.Show();
             //serialForm.Activate();  
-            this.AddOwnedForm(serialForm);
+            AddOwnedForm(serialForm);
         }
 
         private void form1Closed(object sender, FormClosedEventArgs e)
@@ -60,9 +59,7 @@ namespace graph_protting
         private void picturebox1Paint(object sender, PaintEventArgs e)
         {
             monitor1.DrawAxis(e.Graphics);
-            channel1.DataInput();
-            channel1.DataConvert();
-            channel1.DrawReceivedData(e.Graphics);
+            monitor1.DrawReceivedData(e.Graphics);
         }
 
     }

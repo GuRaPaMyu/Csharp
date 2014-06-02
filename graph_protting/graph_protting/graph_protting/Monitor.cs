@@ -9,23 +9,33 @@ namespace graph_protting
 {
     public class Monitor
     {
-        public int xAxisInterval;
-        public int yAxisInterval;
-        public int longDashInterval_X;
-        public int longDashInterval_Y;
+        private int xAxisPartNum;
+        private int yAxisPartNum;
+        private int xLongDashInterval;
+        private int yLongDashInterval;
+        private int xDivSeparatorLength;
+        private int xDivLargeSeparatorLength;
+        private int yDivSeparatorLength;
+        private int yDivLargeSeparatorLength;
 
         public int Width;
         public int Height;
 
+        Channel channel1 = new Channel();
+
         public Monitor()
         {
-            xAxisInterval = 5;
-            yAxisInterval = 4;
-            longDashInterval_X = 5;
-            longDashInterval_Y = 5;
+            xAxisPartNum = 5;
+            yAxisPartNum = 4;
+            xLongDashInterval = 5;
+            yLongDashInterval = 5;
+            xDivSeparatorLength = 4;
+            xDivLargeSeparatorLength = 8;
+            yDivSeparatorLength = 4;
+            yDivLargeSeparatorLength = 8;
         }
 
-        private void DrawSolidXAxis(Graphics graphics)
+        private void drawSolidXAxis(Graphics graphics)
         {
             int x1, y1, x2, y2;
             x1 = 0;
@@ -34,43 +44,41 @@ namespace graph_protting
             var pen = new Pen(Color.Wheat);
             graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
 
-            const int lengthSmallDiv = 4;
-            const int lengthSmallDivL = 8;
             for (int j = 0; j < 3; ++j)
             {
-                for (int i = 0; i < 2 * longDashInterval_X * xAxisInterval + 1; ++i)
+                for (int i = 0; i < 2 * xLongDashInterval * xAxisPartNum + 1; ++i)
                 {
-                    if (i % longDashInterval_X == 0)
+                    if (i % xLongDashInterval == 0)
                     {
-                        y1 = -lengthSmallDivL / 2 + j * Height / 2;
-                        y2 = +lengthSmallDivL / 2 + j * Height / 2;
+                        y1 = -xDivLargeSeparatorLength / 2 + j * Height / 2;
+                        y2 = +xDivLargeSeparatorLength / 2 + j * Height / 2;
                     }
                     else
                     {
-                        y1 = -lengthSmallDiv / 2 + j * Height / 2;
-                        y2 = +lengthSmallDiv / 2 + j * Height / 2;
+                        y1 = -xDivSeparatorLength / 2 + j * Height / 2;
+                        y2 = +xDivSeparatorLength / 2 + j * Height / 2;
                     }
-                    x1 = x2 = i * Width / (2 * longDashInterval_X * xAxisInterval);
+                    x1 = x2 = i * Width / (2 * xLongDashInterval * xAxisPartNum);
                     graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
                 }
             }
         }
 
-        private void DrawDotXAxis(Graphics graphics)
+        private void drawDotXAxis(Graphics graphics)
         {
             int x1, y1, x2, y2;
             x1 = 0;
             x2 = Width;
             var pen = new Pen(Color.Wheat);
             pen.DashPattern = new float[] { 1.0f, 7.0f };
-            for (int i = 1; i < 2 * yAxisInterval; ++i)
+            for (int i = 1; i < 2 * yAxisPartNum; ++i)
             {
-                y1 = y2 = i * Height / (2 * yAxisInterval);
+                y1 = y2 = i * Height / (2 * yAxisPartNum);
                 graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
             }
         }
 
-        private void DrawSolidYAxis(Graphics graphics)
+        private void drawSolidYAxis(Graphics graphics)
         {
             int x1, y1, x2, y2;
             y1 = 0;
@@ -79,48 +87,62 @@ namespace graph_protting
             var pen = new Pen(Color.Wheat);
             graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
 
-            const int lengthSmallDiv = 4;
-            const int lengthSmallDivL = 8;
             for (int j = 0; j < 3; ++j)
             {
-                for (int i = 0; i < 2 * longDashInterval_Y * yAxisInterval + 1; ++i)
+                for (int i = 0; i < 2 * yLongDashInterval * yAxisPartNum + 1; ++i)
                 {
                     if (i % 5 == 0)
                     {
-                        x1 = -lengthSmallDivL / 2 + j * Width / 2;
-                        x2 = +lengthSmallDivL / 2 + j * Width / 2;
+                        x1 = -yDivLargeSeparatorLength / 2 + j * Width / 2;
+                        x2 = +yDivLargeSeparatorLength / 2 + j * Width / 2;
                     }
                     else
                     {
-                        x1 = -lengthSmallDiv / 2 + j * Width / 2;
-                        x2 = +lengthSmallDiv / 2 + j * Width / 2;
+                        x1 = -yDivSeparatorLength / 2 + j * Width / 2;
+                        x2 = +yDivSeparatorLength / 2 + j * Width / 2;
                     }
-                    y1 = y2 = i * Height / (2 * longDashInterval_Y * yAxisInterval);
+                    y1 = y2 = i * Height / (2 * yLongDashInterval * yAxisPartNum);
                     graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
                 }
             }
         }
         
-        private void DrawDotYAxis(Graphics graphics)
+        private void drawDotYAxis (Graphics graphics)
         {
             int x1, y1, x2, y2;
             y1 = 0;
             y2 = Height;
             var pen = new Pen(Color.Wheat);
             pen.DashPattern = new float[] { 1.0f, 7.0f };
-            for (int i = 1; i < 2 * xAxisInterval; ++i)
+            for (int i = 1; i < 2 * xAxisPartNum; ++i)
             {
-                x1 = x2 = i * Width / (2 * xAxisInterval);
+                x1 = x2 = i * Width / (2 * xAxisPartNum);
                 graphics.DrawLine(pen, new Point(x1, y1), new Point(x2, y2));
             }
         }
 
         public void DrawAxis(Graphics graphics)
         {
-            DrawSolidXAxis(graphics);
-            DrawDotXAxis(graphics);
-            DrawSolidYAxis(graphics);
-            DrawDotYAxis(graphics);
+            drawSolidXAxis(graphics);
+            drawDotXAxis(graphics);
+            drawSolidYAxis(graphics);
+            drawDotYAxis(graphics);
+        }
+
+        public void DrawReceivedData(Graphics graphics)
+        {
+          double[] signal;
+          var pen = new Pen(Color.YellowGreen);
+          var points = new Point[Channel.NumSample];
+          signal = channel1.GetSignalData();
+
+          for (int i = 0; i < Channel.NumSample; i++)
+          {
+            points[i].X = (int)((Width * channel1.realTimeInterval_ms * i)
+                            / (2 * xAxisPartNum * channel1.timeDiv_ms));
+            points[i].Y = (int)(Height / 2 - (signal[i] * Height / 2 / yAxisPartNum / channel1.voltageDiv));
+          }
+          graphics.DrawLines(pen, points);
         }
     }
 }
