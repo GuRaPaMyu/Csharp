@@ -10,8 +10,6 @@ namespace graph_protting
   public class Channel
   {
     private double[] signalData = new double[NumSample];
-    private int xAxisInterval = 5;
-    private int yAxisInterval = 4;
 
     public const int NumSample = 1000;
     public double voltageDiv;
@@ -20,10 +18,10 @@ namespace graph_protting
 
     public Channel()
     {
-        realTimeInterval_ms = 0.001;
-        timeDiv_ms = 0.1;
-        voltageDiv = 1;
-        DataInput();
+      realTimeInterval_ms = 0.001;
+      timeDiv_ms = 0.1;
+      voltageDiv = 1;
+      DataInput();
     }
 
     //データ送受信とかして描画できるようになったらDataInputは消す．あくまでテスト描画用
