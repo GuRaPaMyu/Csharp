@@ -40,7 +40,7 @@ namespace graph_protting
         myTimer = new System.Timers.Timer();
         myTimer.Enabled = true;
         myTimer.AutoReset = true;
-        myTimer.Interval = 10;
+        myTimer.Interval = 1;
         myTimer.Elapsed += new ElapsedEventHandler(OnTimerEvent);
     }
 
@@ -57,18 +57,6 @@ namespace graph_protting
     public void StopTimer()
     {
         myTimer.Stop();
-    }
-
-    //データ送受信とかして描画できるようになったらDataInputは消す．あくまでテスト描画用
-    public void DataInput()
-    {
-      double inc_rate;
-      inc_rate = Math.PI * 2 / NumSample;
-
-      for (int i = 0; i < NumSample; i++)
-      {
-        signalData[i] = Math.Sin(inc_rate * i);
-      }
     }
 
     public void DataIn(double data)

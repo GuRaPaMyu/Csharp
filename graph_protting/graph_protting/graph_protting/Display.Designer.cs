@@ -33,9 +33,11 @@
       this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
       this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
+      this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
       this.SuspendLayout();
       // 
       // label1
@@ -119,11 +121,30 @@
       this.pictureBox1.TabStop = false;
       this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.DisplayPaint);
       // 
+      // numericUpDown3
+      // 
+      this.numericUpDown3.DecimalPlaces = 2;
+      this.numericUpDown3.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+      this.numericUpDown3.Location = new System.Drawing.Point(19, 129);
+      this.numericUpDown3.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+      this.numericUpDown3.Name = "numericUpDown3";
+      this.numericUpDown3.Size = new System.Drawing.Size(120, 19);
+      this.numericUpDown3.TabIndex = 5;
+      // 
       // Display
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.HotTrack;
+      this.Controls.Add(this.numericUpDown3);
       this.Controls.Add(this.numericUpDown2);
       this.Controls.Add(this.numericUpDown1);
       this.Controls.Add(this.label2);
@@ -136,6 +157,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -148,6 +170,7 @@
     private System.Windows.Forms.NumericUpDown numericUpDown1;
     private System.Windows.Forms.NumericUpDown numericUpDown2;
     private System.Windows.Forms.PictureBox pictureBox1;
+    private System.Windows.Forms.NumericUpDown numericUpDown3;
 
   }
 }
