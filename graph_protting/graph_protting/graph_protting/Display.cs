@@ -134,7 +134,7 @@ namespace graph_protting
       double[] signal;
       var pen = new Pen(Color.YellowGreen);
       var points = new Point[Channel.NumSample];
-      signal = channel1.GetSignalData();
+      signal = channel1.GetDrawData();
 
       for (int i = 0; i < Channel.NumSample; i++)
       {
