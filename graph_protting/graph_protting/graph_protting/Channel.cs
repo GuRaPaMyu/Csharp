@@ -11,20 +11,26 @@ namespace graph_protting
   public class Channel
   {
     private double[] signalData = new double[NumSample];
+    private double[] drawData = new double[NumSample];
     private System.Timers.Timer myTimer;
     private int currentIndex;
-
+    private int triggeredIndex;
+    private double historyTriggerVoltage;
+    private double triggerLevel;
     public const int NumSample = 1000;
     public double voltageDiv;
     public double timeDiv_ms;
     public double realTimeInterval_ms;
+    
 
     public Channel()    
     {
       realTimeInterval_ms = 0.001;
       timeDiv_ms = 0.1;
       voltageDiv = 1;
+      triggerLevel = 0;
       currentIndex = 0;
+      triggeredIndex = 0;
       NewTimer();
       StartTimer();
     }
@@ -74,6 +80,30 @@ namespace graph_protting
     public double[] GetSignalData()
     {
       return signalData;
+    }
+
+    private void dataConvert()
+    {
+      for(int i=0;i<NumSample;i++)
+      {
+        drawData[i] = signalData[(triggeredIndex + i) % NumSample];
+      }
+    }
+
+    private void setTriggerPoint()
+    {
+      double buffer = 0;
+
+      for(int i=0;i<10;i++)
+      {
+        buffer += signalData[(currentIndex + 1 + i) % NumSample];
+      }
+      buffer /= 10;
+
+      if((buffer > historyTriggerVoltage) && buffer > triggerLevel)
+      {
+        triggeredIndex = currentIndex;
+      }
     }
   }
 }
