@@ -16,7 +16,7 @@ namespace graph_protting
     private int currentIndex;
     private int triggeredIndex;
     private double historyTriggerVoltage;
-    private double triggerLevel;
+    public double TriggerLevel;
     public const int NumSample = 1000;
     public double voltageDiv;
     public double timeDiv_ms;
@@ -28,7 +28,7 @@ namespace graph_protting
       realTimeInterval_ms = 0.001;
       timeDiv_ms = 0.1;
       voltageDiv = 1;
-      triggerLevel = 0;
+      TriggerLevel = 0;
       currentIndex = 0;
       triggeredIndex = 0;
       NewTimer();
@@ -89,7 +89,7 @@ namespace graph_protting
       }
       buffer /= 10;
 
-      if ((buffer > historyTriggerVoltage) && buffer > triggerLevel)
+      if ((buffer > historyTriggerVoltage) && buffer > TriggerLevel)
       {
         triggeredIndex = currentIndex;
       }

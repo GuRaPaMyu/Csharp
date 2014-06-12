@@ -146,6 +146,21 @@ namespace graph_protting
       graphics.DrawLines(pen, points);
     }
 
+    private void DrawTriggerLevel(Graphics graphics)
+    {
+      var pen = new Pen(Color.Red);
+      var points = new Point[2];
+
+      points[0].X = 0;
+      points[0].Y = (int)(this.Height / 2 - channel1.TriggerLevel * this.Height / 2
+                          / yAxisPartNum / channel1.voltageDiv);
+      points[1].X = this.Width;
+      points[1].Y = (int)(this.Height / 2 - channel1.TriggerLevel * this.Height /2
+                          / yAxisPartNum / channel1.voltageDiv);
+
+      graphics.DrawLine(pen, points[0], points[1]);
+    }
+
     private void DisplayLoad(object sender, EventArgs e)
     {
       Point origin = new Point();
@@ -161,6 +176,7 @@ namespace graph_protting
     {
       DrawAxis(e.Graphics);
       DrawReceivedData(e.Graphics);
+      DrawTriggerLevel(e.Graphics);
     }
 
     private void VoltageValueChanged(object sender, EventArgs e)
@@ -180,6 +196,12 @@ namespace graph_protting
     private void DisplaySizeChanged(object sender, EventArgs e)
     {
       pictureBox1.Size = this.Size;
+      pictureBox1.Invalidate();
+    }
+
+    private void triggerLevelChanged(object sender, EventArgs e)
+    {
+      channel1.TriggerLevel = (double)numericUpDown3.Value;
       pictureBox1.Invalidate();
     }
   }

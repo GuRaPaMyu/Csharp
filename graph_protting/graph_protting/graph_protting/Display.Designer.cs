@@ -138,6 +138,8 @@
       this.numericUpDown3.Name = "numericUpDown3";
       this.numericUpDown3.Size = new System.Drawing.Size(120, 19);
       this.numericUpDown3.TabIndex = 5;
+      this.numericUpDown3.ValueChanged += new System.EventHandler(this.triggerLevelChanged);
+      this.numericUpDown3.SizeChanged += new System.EventHandler(this.triggerLevelChanged);
       // 
       // Display
       // 
