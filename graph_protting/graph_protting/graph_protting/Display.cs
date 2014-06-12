@@ -138,8 +138,9 @@ namespace graph_protting
 
       for (int i = 0; i < Channel.NumSample; i++)
       {
-        points[i].X = (int)((Width * channel1.realTimeInterval_ms * i)
-                        / (2 * xAxisPartNum * channel1.timeDiv_ms));
+        points[i].X = i * this.Size.Width / Channel.NumSample;
+                        // (int)((Width * channel1.realTimeInterval_ms * i)
+                        // / (2 * xAxisPartNum * channel1.timeDiv_ms));
         points[i].Y = (int)(Height / 2 - (signal[i] * Height / 2 / yAxisPartNum / channel1.voltageDiv));
       }
       graphics.DrawLines(pen, points);

@@ -93,6 +93,7 @@ namespace graph_protting
       {
         triggeredIndex = currentIndex;
       }
+      historyTriggerVoltage = buffer;
     }
   }
 }
