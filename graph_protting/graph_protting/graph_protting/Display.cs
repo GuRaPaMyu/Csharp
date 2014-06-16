@@ -33,7 +33,13 @@ namespace graph_protting
       xDivLargeSeparatorLength = 8;
       yDivSeparatorLength = 4;
       yDivLargeSeparatorLength = 8;
+      channel1.DataSet += channel1DataSet;
       InitializeComponent();
+    }
+
+    private void channel1DataSet(object sender, EventArgs e)
+    {
+      pictureBox1.Invalidate();
     }
 
     private void drawSolidXAxis(Graphics graphics)

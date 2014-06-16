@@ -5,11 +5,14 @@ using System.Text;
 using System.Drawing;
 using System.Threading.Tasks;
 using System.Timers;
+using System.Windows.Forms;
 
 namespace graph_protting
 {
   public class Channel
   {
+    public event EventHandler DataSet;
+
     private double[] signalData = new double[NumSample];
     private double[] drawData = new double[NumSample];
     private System.Timers.Timer myTimer = new System.Timers.Timer();
@@ -21,7 +24,6 @@ namespace graph_protting
     public double voltageDiv;
     public double timeDiv_ms;
     public double realTimeInterval_ms;
-
 
     public Channel()
     {
@@ -63,6 +65,7 @@ namespace graph_protting
     {
       signalData[currentIndex % NumSample] = data;
       currentIndex++;
+      DataSet(this, EventArgs.Empty);
     }
 
     public double[] GetDrawData()
@@ -79,7 +82,7 @@ namespace graph_protting
       }
     }
 
-    private void setTriggerPoint() 
+    private void setTriggerPoint()
     {
       double buffer = 0;
 
