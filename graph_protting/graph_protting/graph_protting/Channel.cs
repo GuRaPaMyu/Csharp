@@ -79,7 +79,7 @@ namespace graph_protting
       }
     }
 
-    private void setTriggerPoint()
+    private void setTriggerPoint() 
     {
       double buffer = 0;
 
