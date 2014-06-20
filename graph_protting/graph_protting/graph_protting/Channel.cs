@@ -12,12 +12,13 @@ namespace graph_protting
   public class Channel
   {
     public event EventHandler DataSet;
+    public event EventHandler DataDrawAllow;
 
-    private double[] signalData = new double[NumSample];
-    private double[] drawData = new double[NumSample];
+    public double[] SignalData = new double[NumSample];
     private System.Timers.Timer myTimer = new System.Timers.Timer();
     private int currentIndex;
-    private int triggeredIndex;
+    public int endIndex;
+    public int triggeredIndex;
     private double historyTriggerVoltage;
     public double TriggerLevel;
     public const int NumSample = 1000;
@@ -63,36 +64,34 @@ namespace graph_protting
 
     public void DataIn(double data)
     {
-      signalData[currentIndex % NumSample] = data;
-      currentIndex++;
-      DataSet(this, EventArgs.Empty);
-    }
-
-    public double[] GetDrawData()
-    {
-      dataConvert();
-      return drawData;
-    }
-
-    private void dataConvert()
-    {
-      for (int i = 0; i < NumSample; i++)
+      SignalData[currentIndex % NumSample] = data;
+      currentIndex ++;
+      currentIndex %= NumSample;
+      if(currentIndex == endIndex)
       {
-        drawData[i] = signalData[(triggeredIndex + i) % NumSample];
+        DataDrawAllow(this, EventArgs.Empty);
       }
+    }
+
+    public void DrawDataRenew(int yAxisPart)
+    {
+      setTriggerPoint();
+      endIndex = (int)(yAxisPart * timeDiv_ms / realTimeInterval_ms + triggeredIndex);
+      endIndex %= NumSample;
+      DataSet(this, EventArgs.Empty);
     }
 
     private void setTriggerPoint()
     {
       double buffer = 0;
 
+      buffer = 0;
       for (int i = 0; i < 10; i++)
       {
-        buffer += signalData[(currentIndex + 1 + i) % NumSample];
+        buffer += SignalData[(currentIndex - 10 + i + NumSample) % NumSample];
       }
       buffer /= 10;
-
-      if ((buffer > historyTriggerVoltage) && buffer > TriggerLevel)
+      if (buffer > historyTriggerVoltage && buffer > TriggerLevel)
       {
         triggeredIndex = currentIndex;
       }

@@ -20,6 +20,7 @@ namespace graph_protting
     private int xDivLargeSeparatorLength;
     private int yDivSeparatorLength;
     private int yDivLargeSeparatorLength;
+    private double[] drawData = new double[Channel.NumSample];
 
     Channel channel1 = new Channel();
 
@@ -34,7 +35,15 @@ namespace graph_protting
       yDivSeparatorLength = 4;
       yDivLargeSeparatorLength = 8;
       channel1.DataSet += channel1DataSet;
+      channel1.DataDrawAllow += channel1DrawData;
       InitializeComponent();
+    }
+
+    private void channel1DrawData(object sender, EventArgs e)
+    {
+      channel1.DrawDataRenew(yAxisPartNum);
+      drawData = channel1.SignalData;
+      pictureBox1.Invalidate();
     }
 
     private void channel1DataSet(object sender, EventArgs e)
@@ -137,17 +146,23 @@ namespace graph_protting
 
     public void DrawReceivedData(Graphics graphics)
     {
-      double[] signal;
       var pen = new Pen(Color.YellowGreen);
       var points = new Point[Channel.NumSample];
-      signal = channel1.GetDrawData();
+
+      channel1.DrawDataRenew(yAxisPartNum);
 
       for (int i = 0; i < Channel.NumSample; i++)
       {
-        points[i].X = i * this.Size.Width / Channel.NumSample;
-                        // (int)((Width * channel1.realTimeInterval_ms * i)
-                        // / (2 * xAxisPartNum * channel1.timeDiv_ms));
-        points[i].Y = (int)(Height / 2 - (signal[i] * Height / 2 / yAxisPartNum / channel1.voltageDiv));
+        if (channel1.endIndex - channel1.triggeredIndex != 0)
+        points[i].X = (int)(this.Width * i / (channel1.endIndex % Channel.NumSample
+          - channel1.triggeredIndex % Channel.NumSample + 1));
+        points[i].Y = (int)(Height / 2 - (drawData[(i + channel1.triggeredIndex) % Channel.NumSample] * Height / 2 /
+          yAxisPartNum / channel1.voltageDiv));
+        if (i > Channel.NumSample + (channel1.endIndex - channel1.triggeredIndex))
+        {
+          points[i].X = this.Size.Width;
+          points[i].Y = this.Size.Height / 2;
+        }
       }
       graphics.DrawLines(pen, points);
     }
@@ -161,7 +176,7 @@ namespace graph_protting
       points[0].Y = (int)(this.Height / 2 - channel1.TriggerLevel * this.Height / 2
                           / yAxisPartNum / channel1.voltageDiv);
       points[1].X = this.Width;
-      points[1].Y = (int)(this.Height / 2 - channel1.TriggerLevel * this.Height /2
+      points[1].Y = (int)(this.Height / 2 - channel1.TriggerLevel * this.Height / 2
                           / yAxisPartNum / channel1.voltageDiv);
 
       graphics.DrawLine(pen, points[0], points[1]);
