@@ -34,6 +34,7 @@
       this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+      this.label3 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -128,7 +129,7 @@
             1,
             0,
             0,
-            65536});
+            131072});
       this.numericUpDown3.Location = new System.Drawing.Point(19, 129);
       this.numericUpDown3.Minimum = new decimal(new int[] {
             100,
@@ -141,11 +142,24 @@
       this.numericUpDown3.ValueChanged += new System.EventHandler(this.triggerLevelChanged);
       this.numericUpDown3.SizeChanged += new System.EventHandler(this.triggerLevelChanged);
       // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+      this.label3.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label3.ForeColor = System.Drawing.Color.Lime;
+      this.label3.Location = new System.Drawing.Point(15, 151);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(81, 32);
+      this.label3.TabIndex = 6;
+      this.label3.Text = "0.00 V";
+      // 
       // Display
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.HotTrack;
+      this.Controls.Add(this.label3);
       this.Controls.Add(this.numericUpDown3);
       this.Controls.Add(this.numericUpDown2);
       this.Controls.Add(this.numericUpDown1);
@@ -173,6 +187,7 @@
     private System.Windows.Forms.NumericUpDown numericUpDown2;
     private System.Windows.Forms.PictureBox pictureBox1;
     private System.Windows.Forms.NumericUpDown numericUpDown3;
+    private System.Windows.Forms.Label label3;
 
   }
 }

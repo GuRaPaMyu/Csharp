@@ -18,13 +18,13 @@ namespace graph_protting
     private System.Timers.Timer myTimer = new System.Timers.Timer();
     private int currentIndex;
     public int endIndex;
-    public int triggeredIndex;
-    private double historyTriggerVoltage;
+    private double historyData;
     public double TriggerLevel;
     public const int NumSample = 1000;
     public double voltageDiv;
     public double timeDiv_ms;
     public double realTimeInterval_ms;
+    private int cnt = 0; //test
 
     public Channel()
     {
@@ -33,23 +33,22 @@ namespace graph_protting
       voltageDiv = 1;
       TriggerLevel = 0;
       currentIndex = 0;
-      triggeredIndex = 0;
       NewTimer();
       StartTimer();
     }
 
     public void NewTimer()
     {
-      myTimer = new System.Timers.Timer();
-      myTimer.Enabled = true;
+      myTimer = new System.Timers.Timer(1);
       myTimer.AutoReset = true;
-      myTimer.Interval = 0.01;
       myTimer.Elapsed += new ElapsedEventHandler(OnTimerEvent);
     }
 
     private void OnTimerEvent(object source, ElapsedEventArgs e)
     {
-      DataIn(Math.Sin(Math.PI * 2 / (NumSample - 100) * currentIndex * 3));
+      cnt++;
+      cnt %= 2000;
+      DataIn(Math.Sin(Math.PI * 2 * cnt/ NumSample * 6));
     }
 
     public void StartTimer()
@@ -64,38 +63,25 @@ namespace graph_protting
 
     public void DataIn(double data)
     {
-      SignalData[currentIndex % NumSample] = data;
-      currentIndex ++;
-      currentIndex %= NumSample;
-      if(currentIndex == endIndex)
+      if((currentIndex == 0) && (data > TriggerLevel) && (historyData < TriggerLevel)) //立ち上がりトリガ
       {
+        SignalData[currentIndex] = data;
+        currentIndex++;
+      }
+      if(currentIndex != 0)
+      {
+        SignalData[currentIndex] = data;
+        currentIndex ++;
+        currentIndex %= NumSample;
+      }
+
+      //逐次表示なう
+      //if(currentIndex == NumSample - 1)
+      //{
         DataDrawAllow(this, EventArgs.Empty);
-      }
-    }
-
-    public void DrawDataRenew(int yAxisPart)
-    {
-      setTriggerPoint();
-      endIndex = (int)(yAxisPart * timeDiv_ms / realTimeInterval_ms + triggeredIndex);
-      endIndex %= NumSample;
-      DataSet(this, EventArgs.Empty);
-    }
-
-    private void setTriggerPoint()
-    {
-      double buffer = 0;
-
-      buffer = 0;
-      for (int i = 0; i < 10; i++)
-      {
-        buffer += SignalData[(currentIndex - 10 + i + NumSample) % NumSample];
-      }
-      buffer /= 10;
-      if (buffer > historyTriggerVoltage && buffer > TriggerLevel)
-      {
-        triggeredIndex = currentIndex;
-      }
-      historyTriggerVoltage = buffer;
+        DataSet(this, EventArgs.Empty);
+      //}
+      historyData = data;
     }
   }
 }

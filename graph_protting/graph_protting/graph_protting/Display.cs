@@ -35,14 +35,13 @@ namespace graph_protting
       yDivSeparatorLength = 4;
       yDivLargeSeparatorLength = 8;
       channel1.DataSet += channel1DataSet;
-      channel1.DataDrawAllow += channel1DrawData;
+      channel1.DataDrawAllow += channel1DrawDataAllow;
       InitializeComponent();
     }
 
-    private void channel1DrawData(object sender, EventArgs e)
+    private void channel1DrawDataAllow(object sender, EventArgs e)
     {
-      channel1.DrawDataRenew(yAxisPartNum);
-      drawData = channel1.SignalData;
+      drawData = channel1.SignalData;  //配列の中身はコピーできてないと思う
       pictureBox1.Invalidate();
     }
 
@@ -149,20 +148,11 @@ namespace graph_protting
       var pen = new Pen(Color.YellowGreen);
       var points = new Point[Channel.NumSample];
 
-      channel1.DrawDataRenew(yAxisPartNum);
-
       for (int i = 0; i < Channel.NumSample; i++)
       {
-        if (channel1.endIndex - channel1.triggeredIndex != 0)
-        points[i].X = (int)(this.Width * i / (channel1.endIndex % Channel.NumSample
-          - channel1.triggeredIndex % Channel.NumSample + 1));
-        points[i].Y = (int)(Height / 2 - (drawData[(i + channel1.triggeredIndex) % Channel.NumSample] * Height / 2 /
+        points[i].X = (int)(this.Width * i / Channel.NumSample);  //時間軸との関連付け
+        points[i].Y = (int)(Height / 2 - (drawData[i] * Height / 2 /
           yAxisPartNum / channel1.voltageDiv));
-        if (i > Channel.NumSample + (channel1.endIndex - channel1.triggeredIndex))
-        {
-          points[i].X = this.Size.Width;
-          points[i].Y = this.Size.Height / 2;
-        }
       }
       graphics.DrawLines(pen, points);
     }
@@ -223,6 +213,7 @@ namespace graph_protting
     private void triggerLevelChanged(object sender, EventArgs e)
     {
       channel1.TriggerLevel = (double)numericUpDown3.Value;
+      label3.Text = numericUpDown3.Value.ToString() + " V";
       pictureBox1.Invalidate();
     }
   }
