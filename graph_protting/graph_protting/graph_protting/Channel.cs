@@ -87,12 +87,10 @@ namespace graph_protting
         currentIndex %= NumSample;
       }
 
-      //逐次表示なう
-      //if(currentIndex == NumSample - 1)
-      //{
-        DataDrawAllow(this, EventArgs.Empty);
-        DataSet(this, EventArgs.Empty);
-      //}
+      //逐次表示なう.　1描画ごとにするときはCurrentIndex == 0のifの中に．
+      DataDrawAllow(this, EventArgs.Empty);
+      DataSet(this, EventArgs.Empty);
+
       historyData = data;
     }
   }
