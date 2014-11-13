@@ -37,6 +37,8 @@ namespace graph_protting
       channel1.DataSet += channel1DataSet;
       channel1.DataDrawAllow += channel1DrawDataAllow;
       InitializeComponent();
+
+      radioButton1.Select();
     }
 
     private void channel1DrawDataAllow(object sender, EventArgs e)
@@ -215,6 +217,17 @@ namespace graph_protting
       channel1.TriggerLevel = (double)numericUpDown3.Value;
       label3.Text = numericUpDown3.Value.ToString() + " V";
       pictureBox1.Invalidate();
+    }
+
+    private void triggerModeChanged(object sender, EventArgs e)
+    {
+      if(radioButton1.Checked)
+      {
+        channel1.TriggerMode = 0;
+      }else if(radioButton2.Checked)
+      {
+        channel1.TriggerMode = 1;
+      }
     }
   }
 }

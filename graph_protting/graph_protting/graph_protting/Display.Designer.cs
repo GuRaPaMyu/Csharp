@@ -35,6 +35,8 @@
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
       this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
       this.label3 = new System.Windows.Forms.Label();
+      this.radioButton1 = new System.Windows.Forms.RadioButton();
+      this.radioButton2 = new System.Windows.Forms.RadioButton();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -154,11 +156,36 @@
       this.label3.TabIndex = 6;
       this.label3.Text = "0.00 V";
       // 
+      // radioButton1
+      // 
+      this.radioButton1.AutoSize = true;
+      this.radioButton1.Location = new System.Drawing.Point(761, 0);
+      this.radioButton1.Name = "radioButton1";
+      this.radioButton1.Size = new System.Drawing.Size(99, 16);
+      this.radioButton1.TabIndex = 7;
+      this.radioButton1.TabStop = true;
+      this.radioButton1.Text = "立ち上がりEdge";
+      this.radioButton1.UseVisualStyleBackColor = true;
+      // 
+      // radioButton2
+      // 
+      this.radioButton2.AutoSize = true;
+      this.radioButton2.Location = new System.Drawing.Point(761, 22);
+      this.radioButton2.Name = "radioButton2";
+      this.radioButton2.Size = new System.Drawing.Size(99, 16);
+      this.radioButton2.TabIndex = 8;
+      this.radioButton2.TabStop = true;
+      this.radioButton2.Text = "立ち下がりEdge";
+      this.radioButton2.UseVisualStyleBackColor = true;
+      this.radioButton2.CheckedChanged += new System.EventHandler(this.triggerModeChanged);
+      // 
       // Display
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.HotTrack;
+      this.Controls.Add(this.radioButton2);
+      this.Controls.Add(this.radioButton1);
       this.Controls.Add(this.label3);
       this.Controls.Add(this.numericUpDown3);
       this.Controls.Add(this.numericUpDown2);
@@ -188,6 +215,8 @@
     private System.Windows.Forms.PictureBox pictureBox1;
     private System.Windows.Forms.NumericUpDown numericUpDown3;
     private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.RadioButton radioButton1;
+    private System.Windows.Forms.RadioButton radioButton2;
 
   }
 }

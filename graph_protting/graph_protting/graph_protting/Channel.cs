@@ -17,7 +17,6 @@ namespace graph_protting
     public double[] SignalData = new double[NumSample];
     private System.Timers.Timer myTimer = new System.Timers.Timer();
     private int currentIndex;
-    public int endIndex;
     private double historyData;
     public double TriggerLevel;
     public const int NumSample = 1000;
@@ -25,6 +24,7 @@ namespace graph_protting
     public double timeDiv_ms;
     public double realTimeInterval_ms;
     private int cnt = 0; //test
+    public int TriggerMode; //0:Upper, 1:Lower Edge
 
     public Channel()
     {
@@ -35,6 +35,7 @@ namespace graph_protting
       currentIndex = 0;
       NewTimer();
       StartTimer();
+      TriggerMode = 0;
     }
 
     public void NewTimer()
@@ -63,13 +64,24 @@ namespace graph_protting
 
     public void DataIn(double data)
     {
-      if((currentIndex == 0) && (data > TriggerLevel) && (historyData < TriggerLevel)) //立ち上がりトリガ
+      if(currentIndex == 0)
       {
-        SignalData[currentIndex] = data;
-        currentIndex++;
-      }
-      if(currentIndex != 0)
-      {
+        if(TriggerMode == 0)
+        {
+          if ((data > TriggerLevel) && (historyData < TriggerLevel)) //立ち上がりトリガ
+          {
+            SignalData[currentIndex] = data;
+            currentIndex++;
+          }
+        }else if(TriggerMode == 1)
+        {
+          if((data < TriggerLevel) && (historyData > TriggerLevel)) //立ち上がりトリガ
+          {
+            SignalData[currentIndex] = data;
+            currentIndex++;
+          }
+        }
+      }else{
         SignalData[currentIndex] = data;
         currentIndex ++;
         currentIndex %= NumSample;
