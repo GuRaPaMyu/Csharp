@@ -156,7 +156,7 @@ namespace graph_protting
         points[i].Y = (int)(Height / 2 - (drawData[i] * Height / 2 /
           yAxisPartNum / channel1.voltageDiv));
       }
-      graphics.DrawLines(pen, points);
+      graphics.DrawCurve(pen, points);
     }
 
     private void DrawTriggerLevel(Graphics graphics)
