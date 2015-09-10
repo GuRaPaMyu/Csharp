@@ -24,10 +24,11 @@ namespace graph_protting
     private double[] drawData = new double[Channel.NumSample];
 
     //Channel channel1 = new Channel();
-    SerialPort serial = new SerialPort();
 
     public Display()
     {
+      InitializeComponent();
+
       xAxisPartNum = 5;
       yAxisPartNum = 4;
       xLongDashInterval = 5;
@@ -39,11 +40,16 @@ namespace graph_protting
       //channel1.DataSet += channel1DataSet;
       //channel1.DataDrawAllow += channel1DrawDataAllow;
 
-      serial.PortName = "COM4";
-      serial.BaudRate = 9600;
-      serial.Open();
-
-      InitializeComponent();
+      try
+      {
+        serialPort1.PortName = "COM4";
+        serialPort1.BaudRate = 9600;
+        serialPort1.Open();
+      }
+      catch
+      {
+        serialPort1.Close();
+      }
 
       radioButton1.Select();
     }
@@ -160,7 +166,7 @@ namespace graph_protting
       for (int i = 0; i < Channel.NumSample; i++)
       {
         points[i].X = (int)(this.Width * i / Channel.NumSample);  //時間軸との関連付け
-        points[i].Y = (int)(Height / 2 - serial.ReadByte());
+        points[i].Y = (int)(Height / 2 - drawData[i]);
 
           //(int)(Height / 2 - (drawData[i] * Height / 2 /
           //yAxisPartNum / channel1.voltageDiv));
@@ -239,6 +245,15 @@ namespace graph_protting
       {
         //channel1.TriggerMode = 1;
       }
+    }
+
+    private void dataReceived(object sender, SerialDataReceivedEventArgs e)
+    {
+      for(int i=0; i<Channel.NumSample; i++)
+      {
+        drawData[i] = serialPort1.ReadByte();
+      }
+      pictureBox1.Invalidate();
     }
   }
 }

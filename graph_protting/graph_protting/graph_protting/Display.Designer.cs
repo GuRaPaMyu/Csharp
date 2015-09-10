@@ -28,6 +28,7 @@
     /// </summary>
     private void InitializeComponent()
     {
+      this.components = new System.ComponentModel.Container();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -37,6 +38,7 @@
       this.label3 = new System.Windows.Forms.Label();
       this.radioButton1 = new System.Windows.Forms.RadioButton();
       this.radioButton2 = new System.Windows.Forms.RadioButton();
+      this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -179,6 +181,11 @@
       this.radioButton2.UseVisualStyleBackColor = true;
       this.radioButton2.CheckedChanged += new System.EventHandler(this.triggerModeChanged);
       // 
+      // serialPort1
+      // 
+      this.serialPort1.PortName = "COM4";
+      this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.dataReceived);
+      // 
       // Display
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -217,6 +224,6 @@
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.RadioButton radioButton1;
     private System.Windows.Forms.RadioButton radioButton2;
-
+    private System.IO.Ports.SerialPort serialPort1;
   }
 }
