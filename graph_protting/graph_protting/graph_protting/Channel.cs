@@ -33,33 +33,7 @@ namespace graph_protting
       voltageDiv = 1;
       TriggerLevel = 0;
       currentIndex = 0;
-      NewTimer();
-      StartTimer();
       TriggerMode = 0;
-    }
-
-    public void NewTimer()
-    {
-      myTimer = new System.Timers.Timer(1);
-      myTimer.AutoReset = true;
-      myTimer.Elapsed += new ElapsedEventHandler(OnTimerEvent);
-    }
-
-    private void OnTimerEvent(object source, ElapsedEventArgs e)
-    {
-      cnt++;
-      cnt %= 2000;
-      DataIn(Math.Sin(Math.PI * 2 * cnt/ NumSample * 6));
-    }
-
-    public void StartTimer()
-    {
-      myTimer.Start();
-    }
-
-    public void StopTimer()
-    {
-      myTimer.Stop();
     }
 
     public void DataIn(double data)

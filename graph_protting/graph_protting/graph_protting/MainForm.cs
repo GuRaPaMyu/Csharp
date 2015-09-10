@@ -13,7 +13,6 @@ namespace graph_protting
 {
   public partial class OSC : Form
   {
-    SerialCommunicator serialForm = new SerialCommunicator();
 
     public OSC()
     {
@@ -22,14 +21,10 @@ namespace graph_protting
 
     private void form1Load(object sender, EventArgs e)
     {
-      //serialForm.Show();
-      //serialForm.Activate();  
-      AddOwnedForm(serialForm);
     }
 
     private void form1Closed(object sender, FormClosedEventArgs e)
     {
-      serialForm.SerialClose();
     }
 
     private void form1SizeChanged(object sender, EventArgs e)
