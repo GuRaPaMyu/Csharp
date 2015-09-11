@@ -19,7 +19,7 @@ namespace graph_protting
     private int currentIndex;
     private double historyData;
     public double TriggerLevel;
-    public const int NumSample = 256;
+    public const int NumSample = 40;
     public double voltageDiv;
     public double timeDiv_ms;
     public double realTimeInterval_ms;
@@ -30,7 +30,7 @@ namespace graph_protting
     {
       realTimeInterval_ms = 0.001;
       timeDiv_ms = 0.1;
-      voltageDiv = 1;
+      voltageDiv = 70;
       TriggerLevel = 0;
       currentIndex = 0;
       TriggerMode = 0;

@@ -22,8 +22,9 @@ namespace graph_protting
     private int yDivSeparatorLength;
     private int yDivLargeSeparatorLength;
     private double[] drawData = new double[Channel.NumSample];
+    private int current_number;
 
-    //Channel channel1 = new Channel();
+    Channel channel1 = new Channel();
 
     public Display()
     {
@@ -39,6 +40,7 @@ namespace graph_protting
       yDivLargeSeparatorLength = 8;
       //channel1.DataSet += channel1DataSet;
       //channel1.DataDrawAllow += channel1DrawDataAllow;
+      current_number = 0;
 
       try
       {
@@ -51,7 +53,14 @@ namespace graph_protting
         serialPort1.Close();
       }
 
+      textBox1.Clear();
       radioButton1.Select();
+    }
+
+    ~Display()
+    {
+      if (serialPort1.IsOpen)
+        serialPort1.Close();
     }
 
     private void channel1DrawDataAllow(object sender, EventArgs e)
@@ -166,12 +175,10 @@ namespace graph_protting
       for (int i = 0; i < Channel.NumSample; i++)
       {
         points[i].X = (int)(this.Width * i / Channel.NumSample);  //時間軸との関連付け
-        points[i].Y = (int)(Height / 2 - drawData[i]);
-
-          //(int)(Height / 2 - (drawData[i] * Height / 2 /
-          //yAxisPartNum / channel1.voltageDiv));
+        points[i].Y = (int)(Height / 2 - (drawData[i] * Height / 2 /yAxisPartNum / channel1.voltageDiv));
       }
-      graphics.DrawCurve(pen, points);
+      //graphics.DrawCurve(pen, points); //if you want to draw with curve
+      graphics.DrawLines(pen, points);
     }
 
     private void DrawTriggerLevel(Graphics graphics)
@@ -211,14 +218,14 @@ namespace graph_protting
 
     private void VoltageValueChanged(object sender, EventArgs e)
     {
-      //channel1.voltageDiv = (double)numericUpDown1.Value;
+      channel1.voltageDiv = (double)numericUpDown1.Value;
       label1.Text = numericUpDown1.Value.ToString() + " V/Div";
       pictureBox1.Invalidate();
     }
 
     private void TimeValueChanged(object sender, EventArgs e)
     {
-      //channel1.timeDiv_ms = (double)numericUpDown2.Value;
+      channel1.timeDiv_ms = (double)numericUpDown2.Value;
       label2.Text = numericUpDown2.Value.ToString() + " ms/Div";
       pictureBox1.Invalidate();
     }
@@ -231,7 +238,7 @@ namespace graph_protting
 
     private void triggerLevelChanged(object sender, EventArgs e)
     {
-      //channel1.TriggerLevel = (double)numericUpDown3.Value;
+      channel1.TriggerLevel = (double)numericUpDown3.Value;
       label3.Text = numericUpDown3.Value.ToString() + " V";
       pictureBox1.Invalidate();
     }
@@ -240,19 +247,24 @@ namespace graph_protting
     {
       if(radioButton1.Checked)
       {
-        //channel1.TriggerMode = 0;
+        channel1.TriggerMode = 0;
       }else if(radioButton2.Checked)
       {
-        //channel1.TriggerMode = 1;
+        channel1.TriggerMode = 1;
       }
     }
 
     private void dataReceived(object sender, SerialDataReceivedEventArgs e)
     {
-      for(int i=0; i<Channel.NumSample; i++)
-      {
-        drawData[i] = serialPort1.ReadByte();
-      }
+      if(current_number < Channel.NumSample -1)
+        current_number++;
+      else
+        current_number = 0;
+
+        drawData[current_number] = serialPort1.ReadByte();
+
+        textBox1.AppendText(drawData[current_number].ToString());
+
       pictureBox1.Invalidate();
     }
   }

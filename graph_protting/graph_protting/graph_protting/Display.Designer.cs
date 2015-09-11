@@ -39,6 +39,7 @@
       this.radioButton1 = new System.Windows.Forms.RadioButton();
       this.radioButton2 = new System.Windows.Forms.RadioButton();
       this.serialPort1 = new System.IO.Ports.SerialPort(this.components);
+      this.textBox1 = new System.Windows.Forms.TextBox();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -186,11 +187,20 @@
       this.serialPort1.PortName = "COM4";
       this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.dataReceived);
       // 
+      // textBox1
+      // 
+      this.textBox1.Location = new System.Drawing.Point(506, 177);
+      this.textBox1.Multiline = true;
+      this.textBox1.Name = "textBox1";
+      this.textBox1.Size = new System.Drawing.Size(351, 261);
+      this.textBox1.TabIndex = 9;
+      // 
       // Display
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.SystemColors.HotTrack;
+      this.Controls.Add(this.textBox1);
       this.Controls.Add(this.radioButton2);
       this.Controls.Add(this.radioButton1);
       this.Controls.Add(this.label3);
@@ -225,5 +235,6 @@
     private System.Windows.Forms.RadioButton radioButton1;
     private System.Windows.Forms.RadioButton radioButton2;
     private System.IO.Ports.SerialPort serialPort1;
+    private System.Windows.Forms.TextBox textBox1;
   }
 }
